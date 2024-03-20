@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Sign Up</title>
+    
+</head>
+<body>
+    <h2>User Sign Up</h2>
+    <form action="/register" method="post">
+        <label for="firstName">First Name:</label><br>
+        <input type="text" id="firstName" name="firstName" required><br>
+
+        <label for="lastName">Last Name:</label><br>
+        <input type="text" id="lastName" name="lastName" required><br>
+
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" required><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+
+        <label for="phoneNumbers">Phone Numbers:</label><br>
+        <div id="phoneNumbersContainer">
+            <input type="text" name="phoneNumber" required><br>
+        </div>
+        
+
+        <label for="emails">Emails:</label><br>
+        <div id="emailsContainer">
+            <input type="email" name="email" required><br>
+        </div>
+       
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
