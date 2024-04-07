@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h1>User Dashboard</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Description</th>
+                <th>Photo URL</th>
+                <th>Hotel Pic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="hotel : ${hotels}">
+                 <td th:text="${hotel.name}"></td>
+                <td th:text="${hotel.email}"></td>
+                <td th:text="${hotel.businessname}"></td>
+                <td th:text="${hotel.description}"></td>
+                <td>
+                    <img th:src="@{${hotel.photo_url}}" alt="Photo URL" style="max-width: 50%; max-height: 50%;">
+                </td>
+                <td>
+                    <img th:src="@{${hotel.hotel_pic}}" alt="Hotel Pic" style="max-width: 50%; max-height: 50%;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
