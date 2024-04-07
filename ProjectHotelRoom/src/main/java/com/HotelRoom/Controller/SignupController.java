@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.sql.SQLException;
 import java.util.List;
@@ -36,7 +38,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.HotelRoom.Repository.HotelRepo;
 import com.HotelRoom.Repository.UserRepository;
+import com.HotelRoom.models.Hotel;
 import com.HotelRoom.models.User;
 
 import jakarta.servlet.http.HttpSession;
@@ -49,6 +53,9 @@ public class SignupController {
 	
 	@Autowired
 	UserRepository uRepo;
+	
+	@Autowired
+	HotelRepo hRepo;
 	
 	
 	@GetMapping("/")
@@ -78,7 +85,8 @@ public class SignupController {
 	}
 	
 	@PostMapping("/login")
-	public String postlogin(@ModelAttribute User u, Model model, HttpSession session) {
+	public String postlogin(@ModelAttribute User u,
+			@ModelAttribute Hotel hotel, Model model, HttpSession session) {
 	    if (uRepo.existsByUsernameAndPassword(u.getUsername(), u.getPassword())) 
 	    {
 	    	
@@ -89,6 +97,28 @@ public class SignupController {
 	        model.addAttribute("uList", userList); // Adding the 'uList' attribute to the model
 	        return "hotel-search-result.html"; // Redirecting to home page or any other appropriate page after successful login
 	    }
+	    
+	    else {
+	    	
+	    model.addAttribute("error", "Please enter the valid crediantial");
+	    	return "index2.html"; // Returning to the login page if login is unsuccessful
+	    }
+	    
+	}
+	
+	@PostMapping("/hotellogin")
+	public String posthotellogin(
+			@ModelAttribute Hotel hotel, Model model, HttpSession session) throws NoSuchAlgorithmException {
+	    if (hRepo.existsByEmailAndPassword(hotel.getEmail(), hashPassword(hotel.getPassword())))
+	    {
+	    	
+	    	
+	    	session.setAttribute("ActiveUser", hotel.getEmail());
+	    	session.setMaxInactiveInterval(60);
+	         
+	        return "userdashboard"; // Redirecting to home page or any other appropriate page after successful login
+	    }
+	    
 	    else {
 	    	
 	    model.addAttribute("error", "Please enter the valid crediantial");
@@ -98,6 +128,24 @@ public class SignupController {
 	}
 	
 	
+	
+
+	
+	
+	
+    
+ // Method to hash the password using MD5
+    private String hashPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes());
+        byte[] digest = md.digest();
+        StringBuilder sb = new StringBuilder();
+        for (byte b : digest) {
+            sb.append(String.format("%02x", b & 0xff));
+        }
+        return sb.toString();
+    }
+
 	
 	//Image uploading in file system
 	

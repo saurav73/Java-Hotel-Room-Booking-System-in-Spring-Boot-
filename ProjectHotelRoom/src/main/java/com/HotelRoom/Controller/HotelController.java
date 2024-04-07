@@ -85,7 +85,7 @@ public class HotelController {
             // Save the hotel to the database
             hotelRepo.save(newHotel);
 
-            return "userdashboard"; // Return success view
+            return "index2"; // Return success view
         } catch (Exception e) {
             e.printStackTrace();
             // Handle exception properly (e.g., return an error page)

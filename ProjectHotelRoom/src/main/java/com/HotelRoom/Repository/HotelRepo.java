@@ -8,4 +8,5 @@ import com.HotelRoom.models.Hotel;
 @Repository
 public interface HotelRepo extends JpaRepository<Hotel, Integer> {
 
+	boolean existsByEmailAndPassword(String email, String password);
 }

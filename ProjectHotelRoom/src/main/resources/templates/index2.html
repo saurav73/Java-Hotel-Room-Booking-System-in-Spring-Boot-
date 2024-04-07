@@ -29,6 +29,26 @@
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <link rel="stylesheet" href="css/flag-icon.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+       
+        #progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: #4caf50;
+            z-index: 0;
+            animation: progressAnimation 5s linear;
+        }
+        @keyframes progressAnimation {
+            100% {
+                width: 100%;
+            }
+            0% {
+                width: 0%;
+            }
+        }
+    </style>
   </head>
   <body>
     <!-- start cssload-loader -->
@@ -75,16 +95,30 @@
                   </ul>
                 </div>
               </div>
+              <div th:if="${error}" class="error-message">
+        <p th:text="${error}" style="color:red; display: none;" id="error-message"></p>
+        <div id="progress-bar"></div>
+    </div>
             </div>
+            
             <div class="col-lg-6">
               <div class="header-top-content">
                 <div
                   class="header-right d-flex align-items-center justify-content-end"
                 >
  <div class="nav-btn">
-                            <a href="/addhotelhelper" class="theme-btn">List Your Hotel</a>
+                            <a href="/addhotelhelper" class="theme-btn theme-btn-small theme-btn-transparent mr-1" data-toggle="modal">List Your Hotel</a>
                         </div><!-- end nav-btn -->
-                 
+                        
+                       <hr> 
+                  <a
+                      href="#"
+                      class="theme-btn theme-btn-small"
+                      data-toggle="modal"
+                      data-target="#hotelloginPopupForm"
+                      style=" margin-left: 10px;"
+                      >Hotel Login</a
+                    >
                 </div>
               </div>
             </div>
@@ -1827,7 +1861,9 @@
             <div class="modal-body">
               <div class="contact-form-action">
                 <form id="loginForm" method="post" action="/login">
-                 <h6 id="error-message" style="color:red;">#{error}</h6>
+                 <div th:if="${error}" class="error-message">
+        <p th:text="${error}" style="color:red;"></p>
+    </div>
                   <div class="input-box">
                     <label class="label-text">Username</label>
                     <div class="form-group">
@@ -1908,6 +1944,118 @@
       </div>
     </div>
     <!-- end modal-popup -->
+    
+    
+     <!-- end modal-shared -->
+    <div class="modal-popup">
+      <div
+        class="modal fade"
+        id="hotelloginPopupForm"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div>
+                <h5 class="modal-title title" id="exampleModalLongTitle2">
+                  Hotel Login
+                </h5>
+                <p class="font-size-14">Hello! Welcome to your account</p>
+              </div>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true" class="la la-close"></span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="contact-form-action">
+                <form id="loginForm" method="post" action="/hotellogin">
+                 <div th:if="${error}" class="error-message">
+        <p th:text="${error}" style="color:red; display:none;" id="error-message"></p>
+        <div id="progress-bar"></div>
+    </div>
+                  <div class="input-box">
+                    <label class="label-text">Email</label>
+                    <div class="form-group">
+                      <span class="la la-user form-icon"></span>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="email"
+                        id="username"
+                        placeholder="Type your email"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <!-- end input-box -->
+                  <div class="input-box">
+                    <label class="label-text">Password</label>
+                    <div class="form-group mb-2">
+                      <span class="la la-lock form-icon"></span>
+                      <input
+                        class="form-control"
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Type your password"
+                        required
+                      />
+                    </div>
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      
+                      <p class="forgot-password">
+                        <a href="/recover">Forgot Password?</a>
+                      </p>
+                    </div>
+                  </div>
+                  <!-- end input-box -->
+                  <div class="btn-box pt-3 pb-4">
+                    <button type="submit" class="theme-btn w-100">
+                      Login Account
+                    </button>
+                  </div>
+                  <div class="action-box text-center">
+                    <p class="font-size-14">Or Login Using</p>
+                    <ul class="social-profile py-3">
+                      <li>
+                        <a href="#" class="bg-5 text-white"
+                          ><i class="lab la-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="#" class="bg-6 text-white"
+                          ><i class="lab la-twitter"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="#" class="bg-7 text-white"
+                          ><i class="lab la-instagram"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="#" class="bg-5 text-white"
+                          ><i class="lab la-linkedin-in"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </form>
+              </div>
+              <!-- end contact-form-action -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Template JS Files -->
     <script src="js/jquery-3.7.1.min.js"></script>
@@ -1926,6 +2074,16 @@
     <script src="js/jquery.superslides.min.js"></script>
     <script src="js/superslider-script.js"></script>
     <script src="js/main.js"></script>
+    
+   <script >
+// Show error message
+   document.getElementById('error-message').style.display = 'block';
+
+   // Hide error message after 5 seconds
+   setTimeout(function(){
+       document.getElementById('error-message').style.display = 'none';
+   }, 7000); // 5000 milliseconds = 5 seconds
+   </script>
 
   </body>
 
