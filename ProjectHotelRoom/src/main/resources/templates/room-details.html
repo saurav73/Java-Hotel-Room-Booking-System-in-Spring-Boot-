@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Room Details</title>
+</head>
+<body>
+    <h1>Hotel Room Details</h1>
+    
+    <!-- Check if there are rooms available -->
+    <th:block th:if="${not #lists.isEmpty(rooms)}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Room Name</th>
+                    <th>Room Type</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over the list of rooms -->
+                <tr th:each="room : ${rooms}">
+                    <td th:text="${room.name}">Room Name</td>
+                    <td th:text="${room.roomType}">Room Type</td>
+                    <td th:text="${room.description}">Description</td>
+                    <td th:text="${room.price}">Price</td>
+                    <!-- Split image URLs and display each image -->
+                    <td>
+                        <th:block th:each="image : ${#strings.split(room.image, ',')}">
+                            <img th:src="${image}" width="100" height="100" alt="Room Image"/>
+                        </th:block>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </th:block>
+    
+    <!-- If no rooms are available, display a message -->
+    <th:block th:if="${#lists.isEmpty(rooms)}">
+        <p>No rooms available.</p>
+    </th:block>
+</body>
+</html>

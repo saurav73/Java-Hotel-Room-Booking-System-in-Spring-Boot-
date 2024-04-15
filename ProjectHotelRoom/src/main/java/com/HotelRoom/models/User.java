@@ -29,13 +29,22 @@ public class User {
     private String phoneNumber;
 
     
+
+	
+	
+	
+	
+	
+
+
+
 	public int getUserId() {
 		return userId;
 	}
-	
-	
-	
-	
+
+
+
+
 	public String getUsername() {
 		return username;
 	}

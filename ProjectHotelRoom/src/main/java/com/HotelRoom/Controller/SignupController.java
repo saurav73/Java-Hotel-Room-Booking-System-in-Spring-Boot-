@@ -87,16 +87,30 @@ public class SignupController {
 	@PostMapping("/login")
 	public String postlogin(@ModelAttribute User u,
 			@ModelAttribute Hotel hotel, Model model, HttpSession session) {
-	    if (uRepo.existsByUsernameAndPassword(u.getUsername(), u.getPassword())) 
-	    {
-	    	
-	    	
-	    	session.setAttribute("ActiveUser", u.getUsername());
-	    	session.setMaxInactiveInterval(60);
-	        List<User> userList = uRepo.findAll();
-	        model.addAttribute("uList", userList); // Adding the 'uList' attribute to the model
-	        return "hotel-search-result.html"; // Redirecting to home page or any other appropriate page after successful login
-	    }
+	     
+	   
+	    	if (u.getUsername().equals("Hoteladmin") && u.getPassword().equals("admin")) {
+	            // Admin login
+	            session.setAttribute("ActiveUser", u.getUsername());
+	            long verifiedCount = hRepo.countByVerify(true);
+	            long unverifiedCount = hRepo.countByVerify(false);
+	            model.addAttribute("verifiedCount", verifiedCount);
+	            model.addAttribute("unverifiedCount", unverifiedCount);
+	            session.setMaxInactiveInterval(600);
+	            return "admin-dashboard"; // Redirecting to the admin dashboard
+	        } else if (uRepo.existsByUsernameAndPassword(u.getUsername(), u.getPassword())){
+	            // Normal user login
+	            session.setAttribute("ActiveUser", u.getUsername());
+	            session.setMaxInactiveInterval(60);
+	            List<User> userList = uRepo.findAll();
+	            long verifiedCount = hRepo.countByVerify(true);
+	            model.addAttribute("verifiedCount", verifiedCount);
+	            List<Hotel> verifiedHotels = hRepo.findByVerifyIsTrue();
+	            model.addAttribute("hotels", verifiedHotels);
+	            model.addAttribute("uList", userList); // Adding the 'uList' attribute to the model
+	            return "hotel-list.html"; // Redirecting to home page or any other appropriate page after successful login
+	        }
+	    
 	    
 	    else {
 	    	
@@ -108,24 +122,18 @@ public class SignupController {
 	
 	@PostMapping("/hotellogin")
 	public String posthotellogin(
-			@ModelAttribute Hotel hotel, Model model, HttpSession session) throws NoSuchAlgorithmException {
-	    if (hRepo.existsByEmailAndPassword(hotel.getEmail(), hashPassword(hotel.getPassword())))
-	    {
-	    	
-	    	
-	    	session.setAttribute("ActiveUser", hotel.getEmail());
-	    	session.setMaxInactiveInterval(60);
-	         
-	        return "userdashboard"; // Redirecting to home page or any other appropriate page after successful login
+	        @ModelAttribute Hotel hotel, Model model, HttpSession session) throws NoSuchAlgorithmException {
+	    Hotel foundHotel = hRepo.findByEmailAndPassword(hotel.getEmail(), hashPassword(hotel.getPassword()));
+	    if (foundHotel != null) {
+	        // Set the ActiveUser session attribute to the id of the found hotel
+	        session.setAttribute("ActiveUser", foundHotel.getId());
+	        return "user-dashboard";
+	    } else {
+	        model.addAttribute("error", "Please enter valid credentials");
+	        return "index2.html";
 	    }
-	    
-	    else {
-	    	
-	    model.addAttribute("error", "Please enter the valid crediantial");
-	    	return "index2.html"; // Returning to the login page if login is unsuccessful
-	    }
-	    
 	}
+
 	
 	
 	
@@ -206,6 +214,12 @@ public class SignupController {
 		return "hotel-search-result.html";
 	}
 
+	
+	@GetMapping("/user-board")
+	public String userGuide()
+	{
+		return "user-dashboard-booking";
+	}
 
 	
 	

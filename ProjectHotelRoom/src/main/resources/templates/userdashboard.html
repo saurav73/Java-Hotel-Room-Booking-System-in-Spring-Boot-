@@ -1,33 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>User Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Hotels</title>
 </head>
 <body>
-    <h1>User Dashboard</h1>
+    <h1>Hotel List</h1>
     
+    <!-- Display Success Message -->
+    <p th:if="${successMessage}" style="color: green;" th:text="${successMessage}"></p>
+    
+    <!-- Display Error Message -->
+    <p th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></p>
+
+    <!-- Hotel List -->
     <table>
         <thead>
             <tr>
+                <th>Hotel ID</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>City</th>
-                <th>Description</th>
-                <th>Photo URL</th>
-                <th>Hotel Pic</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
+            <!-- Loop through hotels -->
             <tr th:each="hotel : ${hotels}">
-                 <td th:text="${hotel.name}"></td>
-                <td th:text="${hotel.email}"></td>
+                <td th:text="${hotel.id}"></td>
+                <td th:text="${hotel.name}"></td>
                 <td th:text="${hotel.businessname}"></td>
-                <td th:text="${hotel.description}"></td>
                 <td>
-                    <img th:src="@{${hotel.photo_url}}" alt="Photo URL" style="max-width: 50%; max-height: 50%;">
+                    <!-- Display Verification Status -->
+                    <span th:if="${hotel.verify}">Verified</span>
+                    <span th:unless="${hotel.verify}">Not Verified</span>
                 </td>
                 <td>
-                    <img th:src="@{${hotel.hotel_pic}}" alt="Hotel Pic" style="max-width: 50%; max-height: 50%;">
+                    <!-- Form to Verify Hotel -->
+                    <form th:action="@{/verifyHotel}" method="post">
+                        <input type="hidden" name="id" th:value="${hotel.id}">
+                        <button type="submit">Verify</button>
+                    </form>
+                    
+                    <!-- Form to Cancel Hotel Verification -->
+                    <form th:action="@{/cancelHotel}" method="post">
+                        <input type="hidden" name="id" th:value="${hotel.id}">
+                        <button type="submit">Cancel Verification</button>
+                    </form>
                 </td>
             </tr>
         </tbody>

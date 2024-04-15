@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,12 +21,61 @@ public class Room {
     private String image;
     private String roomType;
     private float price;
-    private boolean isBooked;
+    private boolean is_Booked;
+    private String startdate;
+    private String enddate;
 
-
+    @ManyToOne
+    @JoinColumn(name = "hotelid")
+    private Hotel hotel;
+    
+    
+    private int hotelids;
+    
     
 
-    public int getRoomId() {
+    public int getHotelids() {
+		return hotelids;
+	}
+
+	public void setHotelids(int hotelids) {
+		this.hotelids = hotelids;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Room [roomId=" + roomId + ", name=" + name + ", description=" + description + ", image=" + image
+				+ ", roomType=" + roomType + ", price=" + price + ", isBooked=" + is_Booked + ", startdate=" + startdate
+				+ ", enddate=" + enddate + ", hotel=" + hotel + "]";
+	}
+
+	public String getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
+	}
+
+	public String getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
+	}
+
+	public int getRoomId() {
         return roomId;
     }
 
@@ -72,12 +123,14 @@ public class Room {
         this.price = price;
     }
 
-    public boolean isBooked() {
-        return isBooked;
-    }
+	public boolean isIs_Booked() {
+		return is_Booked;
+	}
 
-    public void setBooked(boolean booked) {
-        isBooked = booked;
-    }
+	public void setIs_Booked(boolean is_Booked) {
+		this.is_Booked = is_Booked;
+	}
+
+
 }
 

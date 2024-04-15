@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${hotel.name}">Hotel Name</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <!-- Template CSS Files -->
+ <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/line-awesome.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/daterangepicker.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/css/animated-headline.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+    
+        #map { height: 400px; }
+    </style>
+</head>
+<body>
+    <h2 th:text="${hotel.name}">Hotel Name</h2>
+    <p><strong>Description:</strong> <span th:text="${hotel.description}">Description</span></p>
+    <p><strong>City:</strong> <span th:text="${hotel.city}">City</span></p>
+    <!-- Display Hotel Photo -->
+    <img th:src="@{${hotel.photo_url}}" alt="Hotel Photo"/>
+    <!-- Add more hotel details here -->
+    
+    <!-- Map container -->
+    <div id="map"></div>
+    
+ <!-- Loop through each room in your template -->
+<div class="cabin-type padding-top-30px" th:each="room : ${rooms}">
+    <div class="cabin-type-item seat-selection-item d-flex">
+        <div class="cabin-type-img flex-shrink-0">
+            <img th:src="@{${room.image}}" alt="Room Image">
+        </div>
+        <div class="cabin-type-detail">
+            <h3 class="title" th:text="${room.name}"></h3>
+            <div class="row padding-top-20px">
+                <div class="col-lg-6 responsive-column">
+                    <div class="single-tour-feature d-flex align-items-center mb-3">
+                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
+                            <i class="la la-wifi"></i>
+                        </div>
+                        <div class="single-feature-titles">
+                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>
+                        </div>
+                    </div>
+                </div><!-- end col-lg-6 -->
+                <!-- Add more room features dynamically -->
+            </div><!-- end row -->
+        </div>
+        <div class="cabin-price">
+            <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="${room.price}"></strong></p>
+            <div class="custom-checkbox mb-0">
+                <input type="radio" id="room_[[${room.id}]]" class="roomCheckbox" name="selectedRoom" th:value="${room.price}" onchange="updateTotal()">
+                <label for="room_[[${room.id}]]" class="theme-btn theme-btn-small">Select</label>
+            </div>
+        </div>
+    </div><!-- end cabin-type-item -->
+</div><!-- end cabin-type -->
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        function addMarkers(hotels) {
+            hotels.forEach(function(hotel) {
+                var marker = L.marker([hotel.latitude, hotel.longitude]).addTo(map);
+                marker.bindPopup('<b>' + hotel.name + '</b><br>' + hotel.description);
+            });
+        }
+
+        fetch('/hotels/all')
+            .then(response => response.json())
+            .then(data => addMarkers(data))
+            .catch(error => console.error('Error fetching hotels:', error));
+    </script>
+  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+</body>
+</html>

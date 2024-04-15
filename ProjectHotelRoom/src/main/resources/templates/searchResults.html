@@ -1,0 +1,25 @@
+<!-- searchForm.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Hotels</title>
+</head>
+<body>
+    <h2>Search Hotels by City</h2>
+    <form th:action="@{/search}" method="post">
+        <label>City:</label>
+        <input type="text" name="city" required>
+        <button type="submit">Search</button>
+    </form>
+    
+     <h2 th:text="${hotel.name}">Hotel Name</h2>
+    <p><strong>Description:</strong> <span th:text="${hotel.description}">Description</span></p>
+    <p><strong>City:</strong> <span th:text="${hotel.city}">City</span></p>
+    <!-- Display Hotel Photo -->
+    <img th:src="@{${hotel.photo_url}}" alt="Hotel Photo"/>
+    <!-- Add more hotel details here -->
+    
+    <!-- Map container -->
+</body>
+</html>

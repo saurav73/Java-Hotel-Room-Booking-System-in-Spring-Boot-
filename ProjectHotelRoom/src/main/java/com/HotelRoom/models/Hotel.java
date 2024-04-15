@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,8 +28,34 @@ public class Hotel {
     private String photo_url;
     private String hotel_pic;
     private String password;
+    private boolean verify;
     
     
+    @OneToMany(mappedBy = "hotel")
+    private List<Room> roomList;
+    
+    
+    
+	public List<Room> getRoomList() {
+		return roomList;
+	}
+	public void setRoomList(List<Room> roomList) {
+		this.roomList = roomList;
+	}
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", name=" + name + ", email=" + email + ", role=" + role + ", businessname="
+				+ businessname + ", description=" + description + ", city=" + city + ", longitude=" + longitude
+				+ ", latitude=" + latitude + ", phonenumber=" + phonenumber + ", photo_url=" + photo_url
+				+ ", hotel_pic=" + hotel_pic + ", password=" + password + ", verify=" + verify + ", roomList="
+				+ roomList + "]";
+	}
+	public boolean isVerify() {
+		return verify;
+	}
+	public void setVerify(boolean verify) {
+		this.verify = verify;
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -108,6 +135,7 @@ public class Hotel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 
 
 	
