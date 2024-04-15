@@ -101,13 +101,16 @@ public class SignupController {
 	        } else if (uRepo.existsByUsernameAndPassword(u.getUsername(), u.getPassword())){
 	            // Normal user login
 	            session.setAttribute("ActiveUser", u.getUsername());
-	            session.setMaxInactiveInterval(60);
+	            session.setMaxInactiveInterval(600);
 	            List<User> userList = uRepo.findAll();
 	            long verifiedCount = hRepo.countByVerify(true);
 	            model.addAttribute("verifiedCount", verifiedCount);
 	            List<Hotel> verifiedHotels = hRepo.findByVerifyIsTrue();
 	            model.addAttribute("hotels", verifiedHotels);
-	            model.addAttribute("uList", userList); // Adding the 'uList' attribute to the model
+	            model.addAttribute("uList", userList);
+	            model.addAttribute("latitude", hotel.getLatitude());
+	            model.addAttribute("longitude", hotel.getLongitude());
+	            // Adding the 'uList' attribute to the model
 	            return "hotel-list.html"; // Redirecting to home page or any other appropriate page after successful login
 	        }
 	    
@@ -253,7 +256,7 @@ public class SignupController {
 	public String logout(HttpSession session) 
 	{
 		session.invalidate();
-		return"login.html";
+		return"index2.html";
 	}
 	
 	
@@ -328,6 +331,26 @@ public class SignupController {
 	       
 	    }
 
+	 
+	 
+	 @GetMapping("/hotellist")
+	 public String hotellist(Model model) 
+	 {
+		 
+		 List<User> userList = uRepo.findAll();
+         long verifiedCount = hRepo.countByVerify(true);
+         model.addAttribute("verifiedCount", verifiedCount);
+         List<Hotel> verifiedHotels = hRepo.findByVerifyIsTrue();
+         model.addAttribute("hotels", verifiedHotels);
+         model.addAttribute("uList", userList); // Adding the 'uList' attribute to the model
+		 return"hotel-list";
+	 }
+	 @GetMapping("/userprofile")
+	 public String userprofile() 
+	 {
+		 
+		 return"userprofile";
+	 }
 	 
 	 @GetMapping("adminAddhotel")
      public String adminAddhotel()

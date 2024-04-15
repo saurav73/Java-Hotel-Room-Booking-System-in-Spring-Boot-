@@ -229,9 +229,11 @@ public class HotelController {
                                           .filter(Hotel::isVerify)
                                           .collect(Collectors.toList());
         
+        
         model.addAttribute("hotels", verifiedHotels);
         model.addAttribute("cityName", cityName); 
-        long numberOfHotels = verifiedHotels.size(); // Count the number of verified hotels for the city
+        long numberOfHotels = verifiedHotels.size(); 
+// Count the number of verified hotels for the city
         model.addAttribute("numberOfHotels", numberOfHotels); // Add the count to the model
         
         return "hotel-list";
@@ -246,7 +248,9 @@ public class HotelController {
         List<Room> rooms = roomRepo.findByHotelids(id);
         model.addAttribute("rooms",rooms);
         model.addAttribute("hotel", hotel);
-        return "hotel-list";
+        model.addAttribute("latitude", hotel.getLatitude());
+        model.addAttribute("longitude", hotel.getLongitude());
+        return "HotelDetail";
         // Thymeleaf template name
     }
     

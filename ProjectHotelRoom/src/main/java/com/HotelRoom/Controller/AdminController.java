@@ -129,11 +129,11 @@ public String getUserCounts(Model model ,HttpSession session) {
 public String userlist( Model model, HttpSession session)
 {
 	   // Check if user is logged in and is an admin
-//    String activeUser = (String) session.getAttribute("ActiveUser");
-//    if (activeUser == null || !activeUser.equals("Hoteladmin")) {
-//        // Redirect to login page or handle unauthorized access
-//        return "index2";
-//    }
+    String activeUser = (String) session.getAttribute("ActiveUser");
+    if (activeUser == null || !activeUser.equals("Hoteladmin")) {
+        // Redirect to login page or handle unauthorized access
+        return "index2";
+    }
 	 List<User> users = userRepo.findAll();
 	 
      model.addAttribute("users", users);

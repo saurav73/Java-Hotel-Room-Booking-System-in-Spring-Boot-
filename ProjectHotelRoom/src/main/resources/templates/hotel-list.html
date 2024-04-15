@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="/css/jquery-ui.css">
     <link rel="stylesheet" href="/css/flag-icon.min.css">
     <link rel="stylesheet" href="/css/style.css">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 <!-- start cssload-loader -->
@@ -38,6 +40,18 @@
     </div>
 </div> -->
 <!-- end cssload-loader -->
+
+
+
+<!-- ================================
+       START USER CANVAS MENU
+================================= -->
+
+<!-- ================================
+       END USER CANVAS MENU
+================================= -->
+
+
 
 <!-- ================================
             START HEADER AREA
@@ -337,7 +351,7 @@
                         </ul>
                       </li> -->
                       <li>
-                        <a href="hotel-single.html">Hotel </a>
+                        <a href="hotel-single.html" style="margin-right:30rem;">Hotel </a>
                         <!-- <ul class="dropdown-menu-item">
                           <li><a href="hotel-grid.html">Hotel grid</a></li>
                           <li><a href="hotel-list.html">Hotel list</a></li>
@@ -375,22 +389,22 @@
                          <!--  </li>
                         </ul> -->
                       </li>
-                     <!--  <li>
-                        <a href="#">car <i class="la la-angle-down"></i></a>
-                        <ul class="dropdown-menu-item">
-                          <li><a href="car-grid.html">car grid</a></li>
-                          <li><a href="car-list.html">car list</a></li>
-                          <li><a href="car-sidebar.html">car sidebar </a></li>
-                          <li><a href="car-single.html">car details</a></li>
-                          <li><a href="car-booking.html">Car Booking</a></li>
-                          <li>
-                            <a href="car-search-result.html"
-                              >Car Search Result</a
-                            >
-                          </li>
-                        </ul>
-                      </li> -->
+                <li>
+   <li>
+    <a href="#" style="margin-right:4rem;">
+        <!-- <img src="profile-image.jpg" alt="Profile Image"> --> <!-- Add your profile image source here -->
+        <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
+        <span th:text="${session.ActiveUser}"></span> <!-- Display the active user's username -->
+        <i class="la la-angle-down"></i>
+    </a>
+    <ul class="dropdown-menu-item mr-9 mt-2">
+        <li><a href="/userprofile">Profile Settings</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+
+ 
                       
+
                       
                     </ul>
                     
@@ -412,6 +426,10 @@
 <!-- ================================
          END HEADER AREA
 ================================= -->
+
+
+
+
 
 <!-- ================================
     START BREADCRUMB AREA
@@ -469,45 +487,79 @@
                 </div><!-- end filter-wrap -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
-        
-
-
-                
-                
-                 <!-- Loop through each room in your template -->
-<div class="cabin-type padding-top-30px" th:each="room : ${rooms}">
-    <div class="cabin-type-item seat-selection-item d-flex">
-        <div class="cabin-type-img flex-shrink-0">
-            <img th:src="@{${room.image}}" alt="Room Image">
-        </div>
-        <div class="cabin-type-detail">
-            <h3 class="title" th:text="${room.name}"></h3>
-            <div class="row padding-top-20px">
-                <div class="col-lg-6 responsive-column">
-                    <div class="single-tour-feature d-flex align-items-center mb-3">
-                        <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                            <i class="la la-wifi"></i>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="sidebar mt-0">
+                    <div class="sidebar-widget">
+                        <h3 class="title stroke-shape">Search Hotels</h3>
+                        <div class="sidebar-widget-item">
+                            <div class="contact-form-action">
+                                <form action="/search" method="post">
+                                    <div class="input-box">
+                                        <label class="label-text">Destination / hotel name</label>
+                                        <div class="form-group">
+                                            <span class="la la-map-marker form-icon"></span>
+                                            <input class="form-control" type="text" name="city" id="cityInput" placeholder="Destination, hotel name">
+                                        </div>
+                                    </div>
+                                    <div class="input-box">
+                                        <!-- <label class="label-text">Check in - Check out</label> -->
+                                        <!-- <div class="form-group">
+                                            <span class="la la-calendar form-icon"></span>
+                                            <input class="date-range form-control" type="text" name="daterange">
+                                        </div> -->
+                                    </div>
+                                    <div class="btn-box pt-2">
+                            <button type="submit" id="searchButton" class="theme-btn" t >Search Now</button>
                         </div>
-                        <div class="single-feature-titles">
-                            <h3 class="title font-size-15 font-weight-medium">Free Wi-Fi</h3>
-                        </div>
-                    </div>
-                </div><!-- end col-lg-6 -->
-                <!-- Add more room features dynamically -->
-            </div><!-- end row -->
-        </div>
-        <div class="cabin-price">
-            <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="${room.price}"></strong></p>
-            <div class="custom-checkbox mb-0">
-                <input type="radio" id="room_[[${room.id}]]" class="roomCheckbox" name="selectedRoom" th:value="${room.price}" onchange="updateTotal()">
-                <label for="room_[[${room.id}]]" class="theme-btn theme-btn-small">Select</label>
+                                </form>
+                                
+                                   <!-- Create a div to hold the map -->
+    <div id="map" style="height: 400px;"></div>
+                            </div>
+                        </div><!-- end sidebar-widget-item -->
+                       
+                        
+                    </div><!-- end sidebar-widget -->
+                    
+                  
+                    
+                   
+             
+                </div><!-- end sidebar -->
+            </div><!-- end col-lg-4 -->
+             <div class="col-lg-8">
+    <div class="card-item card-item-list" th:each="hotel : ${hotels}">
+        <div class="card-img">
+            <a th:href="@{'/hotel-details/' + ${hotel.id}}" class="d-block">
+                <img th:src="@{${hotel.photo_url}}" alt="hotel-img">
+            </a>
+            <!-- Add badge for Bestseller if needed -->
+            <span class="badge" >verified</span>
+            <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
+                <i class="la la-heart-o"></i>
             </div>
         </div>
-    </div><!-- end cabin-type-item -->
-</div><!-- end cabin-type -->
-                
-                
-        
+        <div class="card-body">
+            <h3 class="card-title"><a th:href="@{'/hotel-details/' + ${hotel.id}}" th:text="${hotel.name}">Hotel Name</a></h3>
+            <p class="card-meta" th:text="${hotel.city}"></p>
+            <!-- <div class="card-rating">
+                <span class="badge text-white" th:text="${hotel.rating}">4.4/5</span>
+                <span class="review__text">Average</span>
+                <span class="rating__text" >(30 Reviews)</span>
+            </div> -->
+            <div class="card-price d-flex align-items-center justify-content-between">
+               <!--  <p>
+                    <span class="price__from">From</span>
+                    <span class="price__num" >$88.00</span>
+                    <span class="price__text">Per night</span>
+                </p> -->
+                <a th:href="@{'/hotel-details/' + ${hotel.id}}" class="btn-text">See details<i class="la la-angle-right"></i></a>
+            </div>
+        </div>
+    </div><!-- end card-item -->
+</div>
+        </div><!-- end row -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-box mt-3 text-center">
@@ -516,7 +568,7 @@
                 </div><!-- end btn-box -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
-
+    </div><!-- end container -->
 </section><!-- end card-area -->
 <!-- ================================
     END CARD AREA
@@ -787,6 +839,8 @@
     </div>
 </div><!-- end modal-popup -->
 
+
+
 <!-- end modal-shared -->
 <div class="modal-popup">
     <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
@@ -863,11 +917,33 @@
 <script src="js/quantity-input.js"></script>
 <script src="js/main.js"></script>
 
+
+
 <script>
 function searchHotels() {
     var city = document.getElementById("cityInput").value;
     window.location.href = "/search?city=" + encodeURIComponent(city);
 }
+
+
+
+
+var latitude = [[${latitude}]];
+var longitude = [[${longitude}]];
+
+// Initialize the map with fetched latitude and longitude
+var map = L.map('map').setView([latitude, longitude], 6);
+
+// Add OSM layer
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+osm.addTo(map);
+
+// Add marker for hotel location
+var marker = L.marker([latitude, longitude]).addTo(map);
+
+
 
 </script>
 </body>

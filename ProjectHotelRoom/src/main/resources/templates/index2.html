@@ -95,9 +95,8 @@
                   </ul>
                 </div>
               </div>
-              <div th:if="${error}" class="error-message">
-        <p th:text="${error}" style="color:red; display: none;" id="error-message"></p>
-        <div id="progress-bar"></div>
+              <div th:if="${error}" class="error-message" id="successMessage">
+        <p th:text="${error}" style="color:red;"  ></p>
     </div>
             </div>
             
@@ -1734,6 +1733,7 @@
                         type="text"
                         name="username"
                         placeholder="Type your username"
+                        required
                       />
                     </div>
                   </div>
@@ -1747,6 +1747,7 @@
                         type="text"
                         name="email"
                         placeholder="Type your email"
+                        required
                       />
                     </div>
                   </div>
@@ -1760,6 +1761,7 @@
                         type="password"
                         name="password"
                         placeholder="Type password"
+                        required
                       />
                     </div>
                   </div>
@@ -1773,6 +1775,7 @@
                         type="password"
                         name="repassword"
                         placeholder="Type again password"
+                        
                       />
                     </div>
                   </div>
@@ -1861,9 +1864,7 @@
             <div class="modal-body">
               <div class="contact-form-action">
                 <form id="loginForm" method="post" action="/login">
-                 <div th:if="${error}" class="error-message">
-        <p th:text="${error}" style="color:red;"></p>
-    </div>
+                 
                   <div class="input-box">
                     <label class="label-text">Username</label>
                     <div class="form-group">
@@ -2083,6 +2084,23 @@
    setTimeout(function(){
        document.getElementById('error-message').style.display = 'none';
    }, 5000);  */// 5000 milliseconds = 5 seconds
+   
+   var timeoutDuration = 5000;
+
+// Function to hide the scuccess message after a certain amount of time
+ // Timeout duration in milliseconds (e.g., 5000 milliseconds = 5 seconds)
+    var timeoutDuration = 3000; // Set to 3 seconds
+
+    // Function to hide the success message after a certain amount of time with animation
+    setTimeout(function() {
+        $('#successMessage').animate({
+            opacity: 0, // Fade out by changing opacity to 0
+            height: 0, // Collapse height to 0
+            padding: 0 // Remove padding
+        }, 'slow', function() {
+            $(this).remove(); // Remove the element from the DOM after animation
+        });
+    }, timeoutDuration);
    </script>
 
   </body>
