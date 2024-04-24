@@ -3,6 +3,7 @@ package com.HotelRoom.Controller;
 import java.io.File;
 
 
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.sql.SQLException;
 import java.util.List;
-
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Random;
 
@@ -37,10 +38,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.HotelRoom.Repository.HotelRepo;
+import com.HotelRoom.Repository.RoomRepo;
 import com.HotelRoom.Repository.UserRepository;
 import com.HotelRoom.models.Hotel;
+import com.HotelRoom.models.Room;
 import com.HotelRoom.models.User;
 
 import jakarta.servlet.http.HttpSession;
@@ -56,6 +60,10 @@ public class SignupController {
 	
 	@Autowired
 	HotelRepo hRepo;
+	
+	
+	@Autowired
+	RoomRepo roomRepo;
 	
 	
 	@GetMapping("/")
@@ -91,7 +99,7 @@ public class SignupController {
 	   
 	    	if (u.getUsername().equals("Hoteladmin") && u.getPassword().equals("admin")) {
 	            // Admin login
-	            session.setAttribute("ActiveUser", u.getUsername());
+	            session.setAttribute("Activeadmin", u.getUsername());
 	            long verifiedCount = hRepo.countByVerify(true);
 	            long unverifiedCount = hRepo.countByVerify(false);
 	            model.addAttribute("verifiedCount", verifiedCount);
@@ -101,6 +109,7 @@ public class SignupController {
 	        } else if (uRepo.existsByUsernameAndPassword(u.getUsername(), u.getPassword())){
 	            // Normal user login
 	            session.setAttribute("ActiveUser", u.getUsername());
+	            session.setAttribute("id", u.getUserId());
 	            session.setMaxInactiveInterval(600);
 	            List<User> userList = uRepo.findAll();
 	            long verifiedCount = hRepo.countByVerify(true);
@@ -122,14 +131,21 @@ public class SignupController {
 	    }
 	    
 	}
+
 	
-	@PostMapping("/hotellogin")
-	public String posthotellogin(
-	        @ModelAttribute Hotel hotel, Model model, HttpSession session) throws NoSuchAlgorithmException {
+    @PostMapping("/hotellogin")
+	public String posthotellogin(@ModelAttribute Hotel hotel, Model model, HttpSession session) throws NoSuchAlgorithmException {
 	    Hotel foundHotel = hRepo.findByEmailAndPassword(hotel.getEmail(), hashPassword(hotel.getPassword()));
 	    if (foundHotel != null) {
 	        // Set the ActiveUser session attribute to the id of the found hotel
-	        session.setAttribute("ActiveUser", foundHotel.getId());
+	        session.setAttribute("Activehotel", foundHotel.getId());
+	        session.setMaxInactiveInterval(600);
+	        // Retrieve the number of rooms for the found hotel ID
+	        List<Room> numberOfRooms = (List<Room>) roomRepo.findByHotelids(foundHotel.getId());
+	        // Add the number of rooms to the model
+	        model.addAttribute("numberOfRooms", numberOfRooms);
+	        session.setAttribute("Name", foundHotel.getBusinessname());
+	       
 	        return "user-dashboard";
 	    } else {
 	        model.addAttribute("error", "Please enter valid credentials");
@@ -137,14 +153,132 @@ public class SignupController {
 	    }
 	}
 
+    @GetMapping("/userdashboardguide")
+    public String userdashboardguide(Model model, HttpSession session) {
+        // Retrieve the active user's ID from the session
+        Long activeUser = (Long) session.getAttribute("Activehotel");
+        
+        // Check if the activeUser is not null
+        if (activeUser != null) {
+            // Retrieve the hotel associated with the activeUser ID
+            Optional<Hotel> foundHotelOptional = hRepo.findById(activeUser);
+            
+            // Check if the hotel is found
+            if (foundHotelOptional.isPresent()) {
+                Hotel foundHotel = foundHotelOptional.get();
+                
+                // Retrieve the number of rooms for the found hotel ID
+                List<Room> numberOfRooms = roomRepo.findByHotelids(activeUser);
+                
+//                // Add hotel name and number of rooms to the model
+//                model.addAttribute("Name", foundHotel.getBusinessname());
+                model.addAttribute("numberOfRooms", numberOfRooms);
+                
+                // Return the view
+                return "user-dashboard";
+            }
+        }
+        
+        model.addAttribute("error","Please login First");
+        // If the active user or the associated hotel is not found, redirect to an error page or handle it accordingly
+        return "index2"; // You can customize this to redirect to an appropriate error page
+    }
 	
 	
-	
+    @GetMapping("/userroomguide")
+    public String userroomguide(Model model , HttpSession session) {
+//        // Retrieve the active user's ID from the session
+//        Long activeUser = (Long) session.getAttribute("ActiveUser");
+//
+//       
+//        	
+//       if(activeUser==null) {
+//        model.addAttribute("error","Please login First");
+//        // If the active user or the associated hotel is not found, redirect to an error page or handle it accordingly
+//        return "index2";
+//       }
+    // Return the view
+       return "user-dashboard-room";// You can customize this to redirect to an appropriate error page
+    }
 
 	
 	
-	
+    @GetMapping("/userbookingguide/{id}")
+    public String userBookingguide( @PathVariable("id") long id,Model model) 
+    {
+    	 Hotel hotel = hRepo.findById(id)
+                 .orElseThrow(() -> new IllegalArgumentException("Invalid hotel id: " + id));
+         List<Room> rooms = roomRepo.findByHotelids(id);
+         model.addAttribute("rooms",rooms);
+    	return"user-dashboard-booking";
+    }
     
+    @PostMapping("/bookRoom")
+    public String bookRoom(@RequestParam int id, RedirectAttributes redirectAttributes, HttpSession session, Model model) {
+        Optional<Room> optionalRoom = roomRepo.findById(id);
+        
+        if (optionalRoom.isPresent()) {
+            Room room = optionalRoom.get();
+            
+            if (!room.isIs_Booked()) {
+                // Set room booking status to true
+                room.setIs_Booked(true);
+                roomRepo.save(room);
+                redirectAttributes.addFlashAttribute("successMessage", "Room booked successfully.");
+            } else {
+                redirectAttributes.addFlashAttribute("errorMessage", "Room is already booked.");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Room booking failed. Room not found.");
+        }
+        
+        // Redirect back to the room list page
+        Long activeUser = (Long) session.getAttribute("Activehotel");
+        if (activeUser != null) {
+            return "redirect:/userbookingguide/" + activeUser;
+        } else {
+            // Handle the case where ActiveUser attribute is not set
+            // You can redirect to an error page or handle it as appropriate
+            model.addAttribute("error", "Please enter valid credentials");
+            return "index2"; // or any other appropriate action
+        }
+    }
+
+
+
+//
+    @PostMapping("/cancelRoom")
+    public String cancelRoom(@RequestParam int id, RedirectAttributes redirectAttributes, HttpSession session, Model model) {
+        Optional<Room> optionalRoom = roomRepo.findById(id);
+        
+        if (optionalRoom.isPresent()) {
+            Room room = optionalRoom.get();
+            
+            if (room.isIs_Booked()) {
+                // Set room booking status to false
+                room.setIs_Booked(false);
+                roomRepo.save(room);
+                redirectAttributes.addFlashAttribute("successMessage", "Room booking canceled successfully.");
+            } else {
+                redirectAttributes.addFlashAttribute("errorMessage", "Room is not booked.");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Room cancellation failed. Room not found.");
+        }
+        
+        // Redirect back to the room list page
+        Long activeUser = (Long) session.getAttribute("Activehotel");
+        if (activeUser != null) {
+            return "redirect:/userbookingguide/" + activeUser;
+        } else {
+            // Handle the case where ActiveUser attribute is not set
+            // You can redirect to an error page or handle it as appropriate
+            model.addAttribute("error", "Please enter valid credentials");
+            return "index2"; // or any other appropriate action
+        }
+    }
+
+
  // Method to hash the password using MD5
     private String hashPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -253,9 +387,10 @@ public class SignupController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout(HttpSession session) 
+	public String logout(HttpSession session ,Model model) 
 	{
 		session.invalidate();
+		model.addAttribute("success","Logout Succesfully");
 		return"index2.html";
 	}
 	
@@ -345,9 +480,13 @@ public class SignupController {
          model.addAttribute("uList", userList); // Adding the 'uList' attribute to the model
 		 return"hotel-list";
 	 }
-	 @GetMapping("/userprofile")
-	 public String userprofile() 
-	 {
+	 @GetMapping("/userprofile/{userId}")
+	 public String userprofile(@PathVariable("userId") int userId,Model model) 
+	 {// Fetch user data from the database
+	        Optional<User> user = uRepo.findById(userId); // Replace "username" with the actual username
+
+	        // Pass user data to the view
+	        model.addAttribute("user", user);
 		 
 		 return"userprofile";
 	 }

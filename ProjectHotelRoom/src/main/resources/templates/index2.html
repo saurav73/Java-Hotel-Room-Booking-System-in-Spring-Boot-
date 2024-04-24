@@ -7,7 +7,7 @@
     <meta name="author" content="TechyDevs" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Hotel Booking </title>
+    <title>Connect Hotels </title>
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.png" />
 
@@ -98,6 +98,9 @@
               <div th:if="${error}" class="error-message" id="successMessage">
         <p th:text="${error}" style="color:red;"  ></p>
     </div>
+    <div th:if="${success}" class="error-message" id="successMessage">
+        <p th:text="${success}" style="color:green;"  ></p>
+    </div>
             </div>
             
             <div class="col-lg-6">
@@ -106,7 +109,7 @@
                   class="header-right d-flex align-items-center justify-content-end"
                 >
  <div class="nav-btn">
-                            <a href="/addhotelhelperr" class="theme-btn theme-btn-small theme-btn-transparent mr-1" type="button" >List Your Hotel</a>
+                            <a href="/addhotelhelper" class="theme-btn theme-btn-small theme-btn-transparent mr-1" type="button" >List Your Hotel</a>
                         </div><!-- end nav-btn -->
                         
                        <hr> 
@@ -341,7 +344,7 @@
                         </ul>
                       </li> -->
                       <li>
-                        <a href="hotel-single.html">Hotel </a>
+                        <a href="/aboutus">About Us </a>
                         <!-- <ul class="dropdown-menu-item">
                           <li><a href="hotel-grid.html">Hotel grid</a></li>
                           <li><a href="hotel-list.html">Hotel list</a></li>
@@ -844,7 +847,7 @@
     <!-- ================================
     START HOTEL AREA
 ================================= -->
-    <section
+    <!-- <section
       class="hotel-area section-bg padding-top-100px padding-bottom-200px overflow-hidden"
     >
       <div class="container">
@@ -856,11 +859,11 @@
                 You Might Like
               </h2>
             </div>
-            <!-- end section-heading -->
+            end section-heading
           </div>
-          <!-- end col-lg-12 -->
+          end col-lg-12
         </div>
-        <!-- end row -->
+        end row
         <div class="row padding-top-50px">
           <div class="col-lg-12">
             <div class="hotel-card-wrap">
@@ -901,7 +904,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- end card-item -->
+                end card-item
                 <div class="card-item">
                   <div class="card-img">
                     <a href="hotel-single.html" class="d-block">
@@ -934,7 +937,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- end card-item -->
+                end card-item
                 <div class="card-item">
                   <div class="card-img">
                     <a href="hotel-single.html" class="d-block">
@@ -971,7 +974,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- end card-item -->
+                end card-item
                 <div class="card-item">
                   <div class="card-img">
                     <a href="hotel-single.html" class="d-block">
@@ -1005,7 +1008,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- end card-item -->
+                end card-item
                 <div class="card-item">
                   <div class="card-img">
                     <a href="hotel-single.html" class="d-block">
@@ -1038,7 +1041,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- end card-item -->
+                end card-item
                 <div class="card-item">
                   <div class="card-img">
                     <a href="hotel-single.html" class="d-block">
@@ -1076,17 +1079,17 @@
                     </div>
                   </div>
                 </div>
-                <!-- end card-item -->
+                end card-item
               </div>
-              <!-- end hotel-card-carousel -->
+              end hotel-card-carousel
             </div>
           </div>
-          <!-- end col-lg-12 -->
+          end col-lg-12
         </div>
-        <!-- end row -->
+        end row
       </div>
-      <!-- end container-fluid -->
-    </section>
+      end container-fluid
+    </section> -->
     <!-- end hotel-area -->
     <!-- ================================
     END HOTEL AREA
@@ -1896,10 +1899,7 @@
                     <div
                       class="d-flex align-items-center justify-content-between"
                     >
-                      <div class="custom-checkbox mb-0">
-                        <input type="checkbox" id="rememberchb" />
-                        <label for="rememberchb">Remember me</label>
-                      </div>
+                      
                       <p class="forgot-password">
                         <a href="/recover">Forgot Password?</a>
                       </p>
@@ -1911,31 +1911,7 @@
                       Login Account
                     </button>
                   </div>
-                  <div class="action-box text-center">
-                    <p class="font-size-14">Or Login Using</p>
-                    <ul class="social-profile py-3">
-                      <li>
-                        <a href="#" class="bg-5 text-white"
-                          ><i class="lab la-facebook-f"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="bg-6 text-white"
-                          ><i class="lab la-twitter"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="bg-7 text-white"
-                          ><i class="lab la-instagram"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="bg-5 text-white"
-                          ><i class="lab la-linkedin-in"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
+                  
                 </form>
               </div>
               <!-- end contact-form-action -->
@@ -2024,31 +2000,7 @@
                       Login Account
                     </button>
                   </div>
-                  <div class="action-box text-center">
-                    <p class="font-size-14">Or Login Using</p>
-                    <ul class="social-profile py-3">
-                      <li>
-                        <a href="#" class="bg-5 text-white"
-                          ><i class="lab la-facebook-f"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="bg-6 text-white"
-                          ><i class="lab la-twitter"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="bg-7 text-white"
-                          ><i class="lab la-instagram"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="bg-5 text-white"
-                          ><i class="lab la-linkedin-in"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
+                  
                 </form>
               </div>
               <!-- end contact-form-action -->

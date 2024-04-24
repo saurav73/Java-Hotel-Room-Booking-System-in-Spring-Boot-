@@ -86,7 +86,7 @@ public String verifyHotel(@RequestParam int id, RedirectAttributes redirectAttri
 @PostMapping("/cancelHotel")
 public String cancelHotel(@RequestParam int id, HttpSession session, RedirectAttributes redirectAttributes) {
     // Check if user is logged in and is an admin
-    String activeUser = (String) session.getAttribute("ActiveUser");
+    String activeUser = (String) session.getAttribute("Activeadmin");
     if (activeUser == null || !activeUser.equals("Hoteladmin")) {
         // Redirect to login page or handle unauthorized access
         return "index2";
@@ -110,7 +110,7 @@ public String cancelHotel(@RequestParam int id, HttpSession session, RedirectAtt
 @GetMapping("/userCounts")
 public String getUserCounts(Model model ,HttpSession session) {
 	   // Check if user is logged in and is an admin
-    String activeUser = (String) session.getAttribute("ActiveUser");
+    String activeUser = (String) session.getAttribute("Activeadmin");
     if (activeUser == null || !activeUser.equals("Hoteladmin")) {
         // Redirect to login page or handle unauthorized access
         return "index2";
@@ -129,7 +129,7 @@ public String getUserCounts(Model model ,HttpSession session) {
 public String userlist( Model model, HttpSession session)
 {
 	   // Check if user is logged in and is an admin
-    String activeUser = (String) session.getAttribute("ActiveUser");
+    String activeUser = (String) session.getAttribute("Activeadmin");
     if (activeUser == null || !activeUser.equals("Hoteladmin")) {
         // Redirect to login page or handle unauthorized access
         return "index2";
@@ -144,7 +144,7 @@ public String userlist( Model model, HttpSession session)
 public String deleteAdata(@PathVariable int id,Model model,HttpSession session)
 {
 	   // Check if user is logged in and is an admin
-    String activeUser = (String) session.getAttribute("ActiveUser");
+    String activeUser = (String) session.getAttribute("Activeadmin");
     if (activeUser == null || !activeUser.equals("Hoteladmin")) {
         // Redirect to login page or handle unauthorized access
         return "index2";
@@ -158,7 +158,7 @@ public String deleteAdata(@PathVariable int id,Model model,HttpSession session)
 @GetMapping("/edit-user/{userId}")
 public String showEditForm(@PathVariable int userId, Model model,HttpSession session) {
 	   // Check if user is logged in and is an admin
-    String activeUser = (String) session.getAttribute("ActiveUser");
+    String activeUser = (String) session.getAttribute("Activeadmin");
     if (activeUser == null || !activeUser.equals("Hoteladmin")) {
         // Redirect to login page or handle unauthorized access
         return "index2";
@@ -204,9 +204,10 @@ public String usersuccess( Model model)
 }
 
 @GetMapping("/Adminlogout")
-public String logout(HttpSession session) 
+public String logout(HttpSession session,Model model) 
 {
 	session.invalidate();
+	model.addAttribute("success","Logout Succesfully");
 	return"index2.html";
 }
 

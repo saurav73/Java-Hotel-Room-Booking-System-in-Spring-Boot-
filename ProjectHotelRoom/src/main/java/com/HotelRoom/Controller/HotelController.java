@@ -2,6 +2,7 @@ package com.HotelRoom.Controller;
 
 
 import java.io.File;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.HotelRoom.Repository.HotelRepo;
 import com.HotelRoom.Repository.RoomRepo;
@@ -67,7 +69,7 @@ public class HotelController {
     @PostMapping("/addhotel")
     public String addHotel(@ModelAttribute Hotel hotel,
                            @RequestParam("photoUrls") MultipartFile photoUrls,
-                           @RequestParam("hotelpic") MultipartFile hotelpic) {
+                           @RequestParam("hotelpic") MultipartFile hotelpic, Model model) {
         try {
             if (photoUrls.isEmpty() || hotelpic.isEmpty()) {
                 return "error"; // Both photoUrls and hotelpic are required, handle this accordingly
@@ -96,10 +98,11 @@ public class HotelController {
             String hotel_pic = StringUtils.cleanPath(hotelpic.getOriginalFilename());
             saveFile(hotelpic, hotel_pic);
             newHotel.setHotel_pic("/pictures/" + hotel_pic);
-
+            
+            
             // Save the hotel to the database
             hotelRepo.save(newHotel);
-
+            model.addAttribute("success", "Registration succesfuly");
             return "index2"; // Return success view
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,13 +112,13 @@ public class HotelController {
     }
     
     @PostMapping("/addRoom")
-    public String addRoom(@RequestParam("hotelids") int hotelids,
+    public String addRoom(@RequestParam("hotelids") long hotelids,
                           @RequestParam("name") String name,
                           @RequestParam("roomType") String roomType,
                           @RequestParam("description") String description,
                           @RequestParam("price") float price,
                           @RequestParam("photoUrls") MultipartFile[] photoUrls,
-                          Model model) {
+                          Model model ,RedirectAttributes redirectAttributes) {
         try {
             
             
@@ -136,13 +139,12 @@ public class HotelController {
                 photoUrlsString.append("/pictures/").append(filename);
             }
             newRoom.setImage(photoUrlsString.toString());
-            
+            redirectAttributes.addFlashAttribute("successMessage", "Room Added successfully.");
             // Save the room to the database
             roomRepo.save(newRoom);
             
-            // Add success message to the model
-            model.addAttribute("success", "Successfully added");
             
+           
             return "redirect:/userroomguide"; // Redirect to success view
         } catch (Exception e) {
             e.printStackTrace();
@@ -230,6 +232,7 @@ public class HotelController {
                                           .collect(Collectors.toList());
         
         
+        
         model.addAttribute("hotels", verifiedHotels);
         model.addAttribute("cityName", cityName); 
         long numberOfHotels = verifiedHotels.size(); 
@@ -242,7 +245,7 @@ public class HotelController {
 	
     
     @GetMapping("/hotel-details/{id}")
-    public String getHotelDetails(@PathVariable("id") int id, Model model) {
+    public String getHotelDetails(@PathVariable("id") long id, Model model) {
         Hotel hotel = hotelRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid hotel id: " + id));
         List<Room> rooms = roomRepo.findByHotelids(id);
@@ -250,6 +253,18 @@ public class HotelController {
         model.addAttribute("hotel", hotel);
         model.addAttribute("latitude", hotel.getLatitude());
         model.addAttribute("longitude", hotel.getLongitude());
+        return "HotelDetail";
+        // Thymeleaf template name
+    }
+    
+    @GetMapping("/Room-details/{id}")
+    public String getRoomDetails(@PathVariable("id") long id, Model model) {
+        Hotel hotel = hotelRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid hotel id: " + id));
+        List<Room> rooms = roomRepo.findByHotelids(id);
+        model.addAttribute("rooms",rooms);
+        
+       
         return "HotelDetail";
         // Thymeleaf template name
     }
@@ -275,24 +290,13 @@ public class HotelController {
 //    }
     
     
-    @GetMapping("/userbookingguide")
-    public String userBookingguide() 
-    {
-    	return"user-dashboard-booking";
-    }
+   
+  
     
-    @GetMapping("/userdashboardguide")
-    public String userdashboardguide()
-    {
-    	return"user-dashboard";
-    }
-    
-    
-    @GetMapping("/userroomguide")
-    public String userroomguide()
-    {
-    	return "user-dashboard-room";
-    }
+
+	
+ 
+
     
     @GetMapping("/userhotelinfo")
     public String userhotelinfo()

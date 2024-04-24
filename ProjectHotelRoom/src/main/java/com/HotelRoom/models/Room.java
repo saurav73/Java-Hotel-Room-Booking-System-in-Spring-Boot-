@@ -22,23 +22,27 @@ public class Room {
     private String roomType;
     private float price;
     private boolean is_Booked;
-    private String startdate;
-    private String enddate;
+
 
     @ManyToOne
     @JoinColumn(name = "hotelid")
     private Hotel hotel;
     
     
-    private int hotelids;
+    private long hotelids;
     
     
 
-    public int getHotelids() {
+  
+
+
+
+	
+	public long getHotelids() {
 		return hotelids;
 	}
 
-	public void setHotelids(int hotelids) {
+	public void setHotelids(long hotelids) {
 		this.hotelids = hotelids;
 	}
 
@@ -55,25 +59,10 @@ public class Room {
 	@Override
 	public String toString() {
 		return "Room [roomId=" + roomId + ", name=" + name + ", description=" + description + ", image=" + image
-				+ ", roomType=" + roomType + ", price=" + price + ", isBooked=" + is_Booked + ", startdate=" + startdate
-				+ ", enddate=" + enddate + ", hotel=" + hotel + "]";
+				+ ", roomType=" + roomType + ", price=" + price + ", isBooked=" + is_Booked + ", hotel=" + hotel + "]";
 	}
 
-	public String getStartdate() {
-		return startdate;
-	}
 
-	public void setStartdate(String startdate) {
-		this.startdate = startdate;
-	}
-
-	public String getEnddate() {
-		return enddate;
-	}
-
-	public void setEnddate(String enddate) {
-		this.enddate = enddate;
-	}
 
 	public int getRoomId() {
         return roomId;

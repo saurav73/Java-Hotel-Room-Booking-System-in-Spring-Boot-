@@ -7,7 +7,7 @@
     <meta name="author" content="TechyDevs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Trizen - Travel Booking HTML Template</title>
+    <title>Connect Hotels  </title>
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.png">
 
@@ -15,18 +15,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
 
     <!-- Template CSS Files -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="css/line-awesome.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="css/daterangepicker.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/animated-headline.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/flag-icon.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/line-awesome.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/daterangepicker.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/css/animated-headline.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="section-bg">
 <!-- start cssload-loader -->
@@ -132,7 +132,7 @@
                         <a href="user-dashboard-profile.html" class="dropdown-item">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                <span class="font-size-14 font-weight-bold">Ali Tufan</span>
+                                <span class="font-size-14 font-weight-bold"><span th:text="${session.Name}"></span></span>
                             </div>
                         </a>
                         <div class="list-group drop-reveal-list user-drop-reveal-list">
@@ -143,29 +143,8 @@
                                     </div>
                                 </div><!-- end msg-body -->
                             </a>
-                            <a href="user-dashboard-booking.html" class="list-group-item list-group-item-action">
-                                <div class="msg-body">
-                                    <div class="msg-content">
-                                        <h3 class="title"><i class="la la-shopping-cart mr-2"></i>My Booking</h3>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
-                                <div class="msg-body">
-                                    <div class="msg-content">
-                                        <h3 class="title"><i class="la la-heart mr-2"></i>My Reviews</h3>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="user-dashboard-settings.html" class="list-group-item list-group-item-action">
-                                <div class="msg-body">
-                                    <div class="msg-content">
-                                        <h3 class="title"><i class="la la-gear mr-2"></i>Settings</h3>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <div class="section-block"></div>
-                            <a href="index.html" class="list-group-item list-group-item-action">
+                            
+                            <a href="/adminlogout" class="list-group-item list-group-item-action">
                                 <div class="msg-body">
                                     <div class="msg-content">
                                         <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>
@@ -197,7 +176,7 @@
                     <img src="images/team8.jpg" alt="testimonial image">
                 </div>
                 <div class="author-bio">
-                    <h4 class="author__title">Ali Tufan</h4>
+                    <h4 class="author__title"><span th:text="${session.Name}"></span></h4>
                     <span class="author__meta">Member Since May 2017</span>
                 </div>
             </div>
@@ -205,12 +184,10 @@
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu list-items">
                 <li><a href="/userdashboardguide"><i class="la la-dashboard mr-2 text-color"></i>Dashboard</a></li>
-                <li><a href="user-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color-2"></i>My Booking</a></li>
-                <li><a href="user-dashboard-profile.html"><i class="la la-user mr-2 text-color-3"></i>My Profile</a></li>
-                <li ><a href="user-dashboard-reviews.html"><i class="la la-star mr-2"></i>My Reviews</a></li>
-                <li class="page-active"><a href="/userroomguide"><i class="fas fa-bed mr-2 text-color-3"></i>My Rooms</a></li>
-                <li><a href="user-dashboard-wishlist.html"><i class="la la-heart mr-2 text-color-4"></i>Wishlist</a></li>
-                <li><a href="user-dashboard-settings.html"><i class="la la-cog mr-2 text-color-5"></i>Settings</a></li>
+               <li><a th:href="@{'/userbookingguide/' + ${session.Activehotel}}" ><i class="la la-shopping-cart mr-2 text-color"></i>My Rooms</a></li>
+
+                <li class="page-active"><a href="/userroomguide"><i class="fas fa-bed mr-2 text-color-3"></i>Add Rooms</a></li>
+                
                 <li><a href="/logout"><i class="la la-power-off mr-2 text-color-6"></i>Logout</a></li>
             </ul>
         </div><!-- end sidebar-menu-wrap -->
@@ -239,112 +216,8 @@
                                 <i class="la la-user"></i>
                             </div><!-- end user-menu-open -->
                         </div>
-                        <div class="dashboard-search-box">
-                            <div class="contact-form-action">
-                                <form action="#">
-                                    <div class="form-group mb-0">
-                                        <input class="form-control" type="text" name="text" placeholder="Search">
-                                        <button class="search-btn"><i class="la la-search"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="nav-btn ml-auto">
-                            <div class="notification-wrap d-flex align-items-center">
-                                <div class="notification-item mr-2">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle drop-reveal-toggle-icon" id="notificationDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="la la-bell"></i>
-                                            <span class="noti-count">4</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-xl dropdown-menu-right">
-                                            <div class="dropdown-header drop-reveal-header">
-                                                <h6 class="title">You have <strong class="text-black">4</strong> notifications</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list">
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your request has been sent</h3>
-                                                            <p class="msg-text">2 min ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-2 flex-shrink-0 mr-3 ml-0"><i class="la la-check"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your account has been created</h3>
-                                                            <p class="msg-text">1 day ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-3 flex-shrink-0 mr-3 ml-0"><i class="la la-user"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your account updated</h3>
-                                                            <p class="msg-text">2 hrs ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-4 flex-shrink-0 mr-3 ml-0"><i class="la la-lock"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your password changed</h3>
-                                                            <p class="msg-text">Yesterday</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a>
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
-                                <div class="notification-item">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                                <span class="font-size-14 font-weight-bold">Ali Tufan</span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
-                                            <div class="dropdown-item drop-reveal-header user-reveal-header">
-                                                <h6 class="title text-uppercase">Welcome!</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                <a href="user-dashboard-profile.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-user mr-2"></i>My Profile</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-
-                                                <a href="user-dashboard-settings.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-gear mr-2"></i>Settings</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <div class="section-block"></div>
-                                                <a href="index.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
-                            </div>
-                        </div><!-- end nav-btn -->
+                       
+                        
                     </div><!-- end menu-wrapper -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
@@ -354,19 +227,13 @@
         <div class="dashboard-bread dashboard--bread">
             <div class="container-fluid">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="breadcrumb-content">
-                            <div class="section-heading">
-                                <h2 class="sec__title font-size-30 text-white">My Reviews</h2>
-                            </div>
-                        </div><!-- end breadcrumb-content -->
-                    </div><!-- end col-lg-6 -->
+                    
                     <div class="col-lg-6">
                         <div class="breadcrumb-list text-right">
                             <ul class="list-items">
-                                <li><a href="index.html" class="text-white">Home</a></li>
-                                <li>Dashboard</li>
-                                <li>My Reviews</li>
+                                <li><a href="/userdashboardguide" class="text-white">Dashboard</a></li>
+                                
+                                <li>Add Rooms</li>
                             </ul>
                         </div><!-- end breadcrumb-list -->
                     </div><!-- end col-lg-6 -->
@@ -387,10 +254,16 @@
 </div>
 
 <form action="/addRoom" method="post" class="mt-4" enctype="multipart/form-data">
-    <div th:if="${success}" class="alert alert-success" role="alert">
+ <p th:if="${successMessage}" style="color: green;" id="successMessage" th:text="${successMessage}"></p>
+    
+    <!-- Display Error Message -->
+    <p th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></p>
+                                    <!-- Hotel Status Filter -->
+    <!-- <div th:if="${success}" class="alert alert-success" role="alert"  id="successMessage" >
         <span th:text="${success}"></span>
-    </div>
-   <input type="text" id="activeUser" name="hotelids" th:value="${session.ActiveUser}" readonly>
+         <p th:if="${successMessage}" style="color: green;" id="successMessage" th:text="${successMessage}"></p>
+    </div> -->
+   <input type="Hidden" id="activeUser" name="hotelids" th:value="${session.Activehotel}" readonly>
 
     <div class="row mb-3">
         <div class="col-md-6 mb-3">
@@ -498,20 +371,36 @@
 <!-- end scroll top -->
 
 <!-- Template JS Files -->
-<script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-select.min.js"></script>
-<script src="js/moment.min.js"></script>
-<script src="js/daterangepicker.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.fancybox.min.js"></script>
-<script src="js/jquery.countTo.min.js"></script>
-<script src="js/animated-headline.js"></script>
-<script src="js/jquery.filer.min.js"></script>
-<script src="js/jquery.ripples-min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-select.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/daterangepicker.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.fancybox.min.js"></script>
+<script src="/js/jquery.countTo.min.js"></script>
+<script src="/js/animated-headline.js"></script>
+<script src="/js/jquery.filer.min.js"></script>
+<script src="/js/jquery.ripples-min.js"></script>
+<script src="/js/main.js"></script>
+<script > 
+
+//Timeout duration in milliseconds (e.g., 5000 milliseconds = 5 seconds)
+var timeoutDuration = 3000; // Set to 3 seconds
+
+// Function to hide the success message after a certain amount of time with animation
+setTimeout(function() {
+    $('#successMessage').animate({
+        opacity: 0, // Fade out by changing opacity to 0
+        height: 0, // Collapse height to 0
+        padding: 0 // Remove padding
+    }, 'slow', function() {
+        $(this).remove(); // Remove the element from the DOM after animation
+    });
+}, timeoutDuration);
+</script>
 </body>
 
 <!-- Mirrored from techydevs.com/demos/trizen/html/user-dashboard-reviews.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Mar 2024 14:13:33 GMT -->

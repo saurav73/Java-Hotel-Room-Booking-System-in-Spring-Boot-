@@ -28,21 +28,458 @@
     </style>
 </head>
 <body>
-    <h2 th:text="${hotel.name}">Hotel Name</h2>
-    <p><strong>Description:</strong> <span th:text="${hotel.description}">Description</span></p>
-    <p><strong>City:</strong> <span th:text="${hotel.city}">City</span></p>
+
+<header class="header-area">
+    <div class="header-top-bar padding-right-100px padding-left-100px">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="header-top-content">
+                        <div class="header-left">
+                            <ul class="list-items">
+                                <li><a href="#"><i class="la la-phone mr-1"></i>(123) 123-456</a></li>
+                                <li><a href="#"><i class="la la-envelope mr-1"></i>Hotelroom@example.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="header-top-content">
+                        <div class="header-right d-flex align-items-center justify-content-end">
+                           <!--  <div class="header-right-action">
+                                <div class="select-contain select--contain w-auto">
+                                    <select class="select-contain-select">
+                                        <option data-content='<span class="flag-icon flag-icon-id mr-1"></span> Bahasa Indonesia'>Bahasa Indonesia</option>
+                                        <option data-content='<span class="flag-icon flag-icon-de mr-1"></span> Deutsch'>Deutsch</option>
+                                        <option data-content='<span class="flag-icon flag-icon-us mr-1"></span> English(US)' selected>English US</option>
+                                        <option data-content='<span class="flag-icon flag-icon-gb-eng mr-1"></span> English(UK)'>English UK</option>
+                                        <option data-content='<span class="flag-icon flag-icon-ro mr-1"></span> Romanian'>Romanian</option>
+                                        <option data-content='<span class="flag-icon flag-icon-es mr-1"></span> Español'>Español</option>
+                                        <option data-content='<span class="flag-icon flag-icon-fr mr-1"></span> Francais'>Francais</option>
+                                        <option data-content='<span class="flag-icon flag-icon-it mr-1"></span> Italiano'>Italiano</option>
+                                        <option data-content='<span class="flag-icon flag-icon-pl mr-1"></span> Polski'>Polski</option>
+                                        <option data-content='<span class="flag-icon flag-icon-pt mr-1"></span> Portuguese'>Portuguese</option>
+                                        <option data-content='<span class="flag-icon flag-icon-tr mr-1"></span> Turkish'>Turkish</option>
+                                        <option data-content='<span class="flag-icon flag-icon-ru mr-1"></span> Russian'>Russian</option>
+                                        <option data-content='<span class="flag-icon flag-icon-jp mr-1"></span> Japanese'>Japanese</option>
+                                        <option data-content='<span class="flag-icon flag-icon-cn mr-1"></span> Mandarin'>Mandarin</option>
+                                        <option data-content='<span class="flag-icon flag-icon-tw mr-1"></span> Mandarin Chinese'>Mandarin Chinese</option>
+                                        <option data-content='<span class="flag-icon flag-icon-kr mr-1"></span> Korean'>Korean</option>
+                                        <option data-content='<span class="flag-icon flag-icon-in mr-1"></span> Hindi'>Hindi</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <!-- <div class="header-right-action">
+                                <div class="select-contain select--contain w-auto">
+                                    <select class="select-contain-select">
+                                        <option value="1">AED</option>
+                                        <option value="2">AUD</option>
+                                        <option value="3">BRL</option>
+                                        <option value="4">CAD</option>
+                                        <option value="5">CHF</option>
+                                        <option value="6">CNY</option>
+                                        <option value="7">EUR</option>
+                                        <option value="8">GBP</option>
+                                        <option value="9">HKD</option>
+                                        <option value="10">IDR</option>
+                                        <option value="11">INR</option>
+                                        <option value="12">JPY</option>
+                                        <option value="13">KRW</option>
+                                        <option value="14">MYR</option>
+                                        <option value="15">NZD</option>
+                                        <option value="16">PHP</option>
+                                        <option value="17">PLN</option>
+                                        <option value="18">RUB</option>
+                                        <option value="19">SAR</option>
+                                        <option value="20">SGD</option>
+                                        <option value="21">THB</option>
+                                        <option value="22">TRY</option>
+                                        <option value="23">TWD</option>
+                                        <option value="24" selected>USD</option>
+                                        <option value="25">VND</option>
+                                        <option value="26">MXN</option>
+                                        <option value="27">ARS</option>
+                                        <option value="28">INR</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <!-- <div class="header-right-action">
+                                <a href="#" class="theme-btn theme-btn-small theme-btn-transparent mr-1" data-toggle="modal" data-target="#signupPopupForm">Sign Up</a>
+                                <a href="#" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#loginPopupForm">Login</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-menu-wrapper padding-right-100px padding-left-100px">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="menu-wrapper">
+                        <a href="#" class="down-button"><i class="la la-angle-down"></i></a>
+                        <div class="logo">
+                            <a href="index.html"><img src="/images/logo.png" alt="logo"></a>
+                            <div class="menu-toggler">
+                                <i class="la la-bars"></i>
+                                <i class="la la-times"></i>
+                            </div><!-- end menu-toggler -->
+                        </div><!-- end logo -->
+                        <div class="main-menu-content">
+                            <nav>
+                    <ul>
+                      <li>
+                        <a href="/hotellist">Home </a>
+                        <!-- <ul class=""> --><!-- dropdown-menu-item -->
+                         <!--  <li><a href="index.html">Home - main</a></li> -->
+                         <!--  <li><a href="index2.html">Home - Hotel</a></li> -->
+                         <!--  <li><a href="index3.html">Home - Activity</a></li>
+                          <li><a href="index4.html">Home - Car</a></li>
+                          <li><a href="index5.html">Home - Cruise</a></li>
+                          <li><a href="index6.html">Home - Flight</a></li>
+                          <li><a href="index7.html">Home - City Tour</a></li> -->
+                          <!-- <li>
+                            <a href="index8.html" >Home - Bus</a>
+                          </li> -->
+                      <!--   </ul> -->
+                      </li>
+                   <!--    <li>
+                        <a href="#">Tour <i class="la la-angle-down"></i></a>
+                        <ul class="dropdown-menu-item">
+                          <li>
+                            <a href="tour-fullwidth.html">Tour Full width</a>
+                          </li>
+                          <li><a href="tour-grid.html">Tour Grid</a></li>
+                          <li><a href="tour-list.html">Tour List</a></li>
+                          <li>
+                            <a href="tour-left-sidebar.html"
+                              >Tour Left Sidebar</a
+                            >
+                          </li>
+                          <li>
+                            <a href="tour-right-sidebar.html"
+                              >Tour Right Sidebar</a
+                            >
+                          </li>
+                          <li><a href="tour-details.html">Tour details</a></li>
+                          <li><a href="tour-booking.html">Tour Booking</a></li>
+                          <li>
+                            <a href="tour-search-result.html"
+                              >Tour Search Result</a
+                            >
+                          </li>
+                        </ul>
+                      </li> -->
+                      <!-- <li>
+                        <a href="#">Cruise <i class="la la-angle-down"></i></a>
+                        <ul class="dropdown-menu-item">
+                          <li><a href="cruises.html">Cruises</a></li>
+                          <li><a href="cruises-list.html">Cruise list</a></li>
+                          <li>
+                            <a href="cruise-sidebar.html">Cruise Sidebar</a>
+                          </li>
+                          <li>
+                            <a href="cruise-details.html">Cruise details</a>
+                          </li>
+                          <li>
+                            <a href="cruise-booking.html">Cruise Booking</a>
+                          </li>
+                          <li>
+                            <a href="cruise-search-result.html"
+                              >Cruise Search Result</a
+                            >
+                          </li>
+                        </ul>
+                      </li> -->
+<!--                       <li>
+                        <a href="#">Pages <i class="la la-angle-down"></i></a>
+                        <div class="dropdown-menu-item mega-menu">
+                          <ul class="row no-gutters">
+                            <li class="col-lg-3 mega-menu-item">
+                              <ul>
+                                <li><a href="add-hotel.html">add hotel </a></li>
+                                <li>
+                                  <a href="add-flight.html">add flight </a>
+                                </li>
+                                <li><a href="add-tour.html">add tour </a></li>
+                                <li>
+                                  <a href="add-cruise.html">add cruise </a>
+                                </li>
+                                <li><a href="add-car.html">add car</a></li>
+                                <li>
+                                  <a href="user-dashboard.html"
+                                    >User Dashboard</a
+                                  >
+                                </li>
+                                <li>
+                                  <a href="admin-dashboard.html"
+                                    >Admin Dashboard</a
+                                  >
+                                </li>
+                                <li><a href="career.html">career</a></li>
+                                <li>
+                                  <a href="route-map.html">route map</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="col-lg-3 mega-menu-item">
+                              <ul>
+                                <li>
+                                  <a href="route.html">route</a>
+                                </li>
+                                <li>
+                                  <a href="route-destination.html">route destination</a>
+                                </li>
+                                <li>
+                                  <a href="career-details.html"
+                                    >career details</a
+                                  >
+                                </li>
+                                <li>
+                                  <a href="user-profile.html">User profile</a>
+                                </li>
+                                <li>
+                                  <a href="become-local-expert.html"
+                                    >Become Local Expert</a
+                                  >
+                                </li>
+                                <li><a href="contact.html">contact</a></li>
+                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                                <li>
+                                  <a href="recover.html">recover password</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="col-lg-3 mega-menu-item">
+                              <ul>
+                                <li>
+                                  <a href="payment-received.html"
+                                    >payment received</a
+                                  >
+                                </li>
+                                <li>
+                                  <a href="payment-complete.html"
+                                    >payment complete</a
+                                  >
+                                </li>
+                                <li>
+                                  <a href="destinations.html">Destinations</a>
+                                </li>
+                                <li><a href="about.html">about</a></li>
+                                <li>
+                                  <a href="services.html">Our Services</a>
+                                </li>
+                                <li><a href="gallery.html">Gallery</a></li>
+                                <li><a href="pricing.html">pricing</a></li>
+                                <li><a href="faq.html">faq</a></li>
+                                <li>
+                                  <a href="add-new-post.html">add new post</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="col-lg-3 mega-menu-item">
+                              <ul>
+                                <li>
+                                  <a href="blog-full-width.html"
+                                    >blog full width</a
+                                  >
+                                </li>
+                                <li><a href="blog-grid.html">blog grid</a></li>
+                                <li>
+                                  <a href="blog-sidebar.html">blog sidebar</a>
+                                </li>
+                                <li>
+                                  <a href="blog-single.html">blog details</a>
+                                </li>
+                                <li>
+                                  <a href="coming-soon.html">Coming Soon</a>
+                                </li>
+                                <li><a href="page-404.html">404 page</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </li> -->
+                    <!--   <li>
+                        <a href="#">Flight <i class="la la-angle-down"></i></a>
+                        <ul class="dropdown-menu-item">
+                          <li><a href="flight-grid.html">Flight grid</a></li>
+                          <li><a href="flight-list.html">Flight list</a></li>
+                          <li>
+                            <a href="flight-sidebar.html">Flight sidebar </a>
+                          </li>
+                          <li>
+                            <a href="flight-single.html">Flight details</a>
+                          </li>
+                          <li>
+                            <a href="flight-booking.html">Flight Booking</a>
+                          </li>
+                          <li>
+                            <a href="flight-search-result.html"
+                              >Flight Search Result</a
+                            >
+                          </li>
+                        </ul>
+                      </li> -->
+                      <li>
+                        <a href="hotel-single.html" style="margin-right:30rem;">About us </a>
+                        <!-- <ul class="dropdown-menu-item">
+                          <li><a href="hotel-grid.html">Hotel grid</a></li>
+                          <li><a href="hotel-list.html">Hotel list</a></li>
+                          <li>
+                            <a href="hotel-sidebar.html">Hotel sidebar </a>
+                          </li>
+                          <li><a href="hotel-single.html">Hotel details</a></li>
+                          <li>
+                            <a href="hotel-booking.html">Hotel Booking</a>
+                          </li>
+                          <li>
+                            <a href="hotel-search-result.html"
+                              >Hotel Search Result</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#">Rooms <i class="la la-plus"></i></a> -->
+                           <!--  <ul class="sub-menu">
+                              <li><a href="room-list.html">Room List</a></li>
+                              <li><a href="room-grid.html">Room Grid</a></li>
+                              <li>
+                                <a href="room-search-result.html"
+                                  >Search Result</a
+                                >
+                              </li>
+                              <li>
+                                <a href="room-search-result-list.html"
+                                  >Search Result list</a
+                                >
+                              </li>
+                              <li>
+                                <a href="room-details.html">Room Details</a>
+                              </li>
+                            </ul> -->
+                         <!--  </li>
+                        </ul> -->
+                      </li>
+                <li>
+   <li>
+    <a href="#" style="margin-right:4rem;">
+        <!-- <img src="profile-image.jpg" alt="Profile Image"> --> <!-- Add your profile image source here -->
+        <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="/images/team8.jpg" alt="team-img"></div>
+        <span th:text="${session.ActiveUser}"></span> <!-- Display the active user's username -->
+        <i class="la la-angle-down"></i>
+    </a>
+    <ul class="dropdown-menu-item mr-9 mt-2">
+        <li><a href="/userprofile">Profile Settings</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+
+ 
+                      
+
+                      
+                    </ul>
+                    
+                    
+                    
+                    
+                  </nav>
+                        </div><!-- end main-menu-content -->
+                        <!-- <div class="nav-btn">
+                            <a href="become-local-expert.html" class="theme-btn">Become Local Expert</a>
+                        </div> --><!-- end nav-btn -->
+                    </div><!-- end menu-wrapper -->
+                </div><!-- end col-lg-12 -->
+
+            </div><!-- end row -->
+        </div><!-- end container-fluid -->
+    </div><!-- end header-menu-wrapper -->
+</header>
+
+
+
+
+<!-- ================================
+    START BREADCRUMB AREA
+================================= -->
+<section class="breadcrumb-area bread-bg-7">
+    <div class="breadcrumb-wrap">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 ml-4">
+                    <div class="breadcrumb-content">
+                        <div class="section-heading">
+                            <h2 class="sec__title text-white " >Hotel Detail</h2>
+                        </div>
+                    </div><!-- end breadcrumb-content -->
+                </div><!-- end col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="breadcrumb-list text-right">
+                        <ul class="list-items">
+                            <li><a href="index.html">Home</a></li>
+                            <li>Hotel List</li>
+                            <li>Hotel Detail</li>
+                        </ul>
+                    </div><!-- end breadcrumb-list -->
+                </div><!-- end col-lg-6 -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end breadcrumb-wrap -->
+    <div class="bread-svg-box">
+        <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+    </div><!-- end bread-svg -->
+</section><!-- end breadcrumb-area -->
+<section>
+    <h2 th:text="${hotel.businessname}" class="mt-4" style="margin-left: 35rem;">Hotel Name</h2>
+    <hr>
+    <p class="mb-3 mt-5" style="margin-left: 19rem;      margin-right: 17rem;" >
     <!-- Display Hotel Photo -->
-    <img th:src="@{${hotel.photo_url}}" alt="Hotel Photo"/>
+    <div class="d-inline-block overflow-hidden rounded-circle" style="width: 200px; margin-left: 34rem; height: 200px;">
+  <img th:src="@{${hotel.photo_url}}" alt="Hotel Photo" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" />
+</div><br>
+<p  style=" margin-left: 15rem; margin: 3rem; margin-right: 2rem;">
+  <strong>Description:</strong> 
+  <span class="text-muted" th:text="${hotel.description}">Description</span>
+  </p>
+
+<hr>
+    <p style="margin-left: 35rem;"><strong>City:</strong> <span th:text="${hotel.city}" >City</span></p>
+    <hr>
+
+
+<h2  class="mt-4 mb-4" style="margin-left: 32rem;">Hotel Location</h2>
+<br>
     <!-- Add more hotel details here -->
     <!-- Map container -->
-<div class="container">
+    <div class="container">
     <div class="row justify-content-center">
-        <div id="map" class="col-md-8" style="height: 400px;"></div>
+        <div id="map" class="col-md-8 border rounded" style="max-height: 400px;"></div>
     </div>
 </div>
     
+   
+<!--     <a href="#"
+   class="theme-btn theme-btn-small delete-btn"
+   data-placement="top"
+   data-toggle="modal"
+   data-target="#Mappopupform"
+   title="Location"
+    style="margin-left: 35rem;"
+>
+   <i class="la la-map-marker"> Show Location</i>
+
+</a>
+ -->
+<hr>
+
+    
+<h2  class="mt-4" style="margin-left: 35rem;">Available Rooms </h2>
+    
+    
+    <hr>
  <!-- Loop through each room in your template -->
-<div class="cabin-type padding-top-30px" th:each="room : ${rooms}">
+<div class="cabin-type padding-top-30px " style="margin-left:8rem;" th:each="room : ${rooms}">
     <div class="cabin-type-item seat-selection-item d-flex">
         <div class="cabin-type-img flex-shrink-0">
             <img th:src="@{${room.image}}" alt="Room Image">
@@ -66,54 +503,123 @@
         <div class="cabin-price">
             <p class="text-uppercase font-size-14">Per/night<strong class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="${room.price}"></strong></p>
             <div class="custom-checkbox mb-0">
-                <input type="radio" id="room_[[${room.id}]]" class="roomCheckbox" name="selectedRoom" th:value="${room.price}" onchange="updateTotal()">
-                <label for="room_[[${room.id}]]" class="theme-btn theme-btn-small">Select</label>
+                <input type="hidden" id="room_[[${room.id}]]" class="roomCheckbox" name="selectedRoom" th:value="${room.price}" onchange="updateTotal()">
+                <label for="room_[[${room.id}]]" ><span class="badge badge-info py-3 px-4" th:text="${room.is_Booked ? 'Booked' : 'Available'}"></span></label>
             </div>
         </div>
     </div><!-- end cabin-type-item -->
 </div><!-- end cabin-type -->
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<hr>
+
+            <div class="col-lg-6" style="margin-left: 29rem; " >
+                <div class="form-box">
+                   <div class="form-title-wrap bg-primary text-white rounded" style="color:white;">
+    <h3 class="title" style="color:white;">Contact Us For Booking</h3>
+</div><!-- form-title-wrap -->
+
+                   
+
+                    <div class="form-content">
+                        <div class="address-book">
+                            <ul class="list-items contact-address">
+                               
+                                <li>
+                                    <i class="la la-phone icon-element"></i>
+                                    <h5 class="title font-size-16 pb-1">Phone</h5>
+                                    <p class="map__desc" th:text="${hotel.phonenumber}">Moblie:</p>
+                                   
+                                </li>
+                                <li>
+                                    <i class="la la-envelope-o icon-element"></i>
+                                    <h5 class="title font-size-16 pb-1">Email</h5>
+                                    <p class="map__desc"  th:text="${hotel.email}"></p>
+                                    
+                                </li>
+                            </ul>
+                           
+                        </div>
+                    </div><!-- end form-content -->
+                </div><!-- end form-box -->
+            </div><!-- end col-lg-4 -->
+<!-- ================================
+    START INFO AREA
+================================= -->
+<section class="info-area info-bg padding-top-90px padding-bottom-70px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 responsive-column">
+                <a href="#" class="icon-box icon-layout-2 d-flex">
+                    <div class="info-icon flex-shrink-0 bg-rgb text-color-2">
+                        <i class="la la-phone"></i>
+                    </div><!-- end info-icon-->
+                    <div class="info-content">
+                        <h4 class="info__title">Need Help? Contact us</h4>
+                        <p class="info__desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                        </p>
+                    </div><!-- end info-content -->
+                </a><!-- end icon-box -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <a href="#" class="icon-box icon-layout-2 d-flex">
+                    <div class="info-icon flex-shrink-0 bg-rgb-2 text-color-3">
+                        <i class="la la-money"></i>
+                    </div><!-- end info-icon-->
+                    <div class="info-content">
+                        <h4 class="info__title">Payments</h4>
+                        <p class="info__desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                        </p>
+                    </div><!-- end info-content -->
+                </a><!-- end icon-box -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <a href="#" class="icon-box icon-layout-2 d-flex">
+                    <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4">
+                        <i class="la la-times"></i>
+                    </div><!-- end info-icon-->
+                    <div class="info-content">
+                        <h4 class="info__title">Cancel Policy</h4>
+                        <p class="info__desc">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                        </p>
+                    </div><!-- end info-content -->
+                </a><!-- end icon-box -->
+            </div><!-- end col-lg-4 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end info-area -->
+ <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+   
     <script>
     var latitude = [[${latitude}]];
     var longitude = [[${longitude}]];
 
-    // Initialize the map with fetched latitude and longitude
-    var map = L.map('map').setView([latitude, longitude], 12); // Adjust the zoom level as needed
+    var map = L.map('map').setView([latitude, longitude], 15);
 
-    // Add OSM layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Add marker for hotel location
     var hotelMarker = L.marker([latitude, longitude]).addTo(map);
 
-    // Get user's current location using Geolocation API
-    function getUserLocation() {
+    /* function getUserLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var userLat = position.coords.latitude;
                 var userLng = position.coords.longitude;
 
-                // Center map on user's location
                 map.setView([userLat, userLng], 12);
 
-                // Add marker for user's current location
-                var userMarker = L.marker([userLat, userLng]).addTo(map);
+                /* var userMarker = L.marker([userLat, userLng]).addTo(map); */
 
-                // Add routing control with user's current location as a waypoint
-                L.Routing.control({
-                    waypoints: [
-                        L.latLng(userLat, userLng), // User's current location
-                        L.latLng(latitude, longitude) // Hotel location
-                        // Add other waypoints as needed
-                    ],
-                    routeWhileDragging: true, // Enable route update while dragging waypoints
-                    lineOptions: {
-                        styles: [{color: 'blue', opacity: 0.6, weight: 4}]
-                    }
-                }).addTo(map);
+                // Add polyline between user's location and hotel location
+/*                 var polyline = L.polyline([[userLat, userLng], [latitude, longitude], {color: 'blue'}).addTo(map); */
+
+                // Fit the map to the bounds of the polyline
+              /*  map.fitBounds(polyline.getBounds());
             }, function(error) {
                 console.error("Error getting user location: " + error.message);
                 alert("Error getting your location. Please allow geolocation access.");
@@ -124,11 +630,10 @@
         }
     }
 
-    // Call getUserLocation after map initialization
     document.addEventListener('DOMContentLoaded', function() {
         getUserLocation();
     });
-
+ */
     
     
 /*     var map = L.map('demo').setView([latitude, longitude], 18);
@@ -157,5 +662,50 @@
 <!--        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+<!-- Map popup -->
+</section>
+<div class="modal-popup">
+      <div
+        class="modal fade"
+        id="Mappopupform"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Location of the Hotel</h2>
+            </div>
+            <div class="modal-body">
+              <div class="contact-form-action">
+                <div class="container">
+    <div class="row justify-content-center">
+        <div id="map" class="col-md-8" style="height: 400px;"></div>
+    </div>
+</div>
+              </div>
+              <!-- end contact-form-action -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Template JS Files -->
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/daterangepicker.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/jquery.countTo.min.js"></script>
+<script src="js/animated-headline.js"></script>
+<script src="js/jquery.ripples-min.js"></script>
+<script src="js/main.js"></script>
+    
 </body>
 </html>

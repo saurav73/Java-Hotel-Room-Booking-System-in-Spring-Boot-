@@ -394,7 +394,7 @@
         <i class="la la-angle-down"></i>
     </a>
     <ul class="dropdown-menu-item mr-9 mt-2">
-        <li><a href="profile-settings.html">Profile Settings</a></li>
+        <li><a href="#">Profile Settings</a></li>
         <li><a href="/logout">Logout</a></li>
     </ul>
 
@@ -448,41 +448,34 @@
                                         <div class="row">
                                             <div class="col-lg-6 responsive-column">
                                                 <div class="input-box">
-                                                    <label class="label-text">First Name</label>
+                                                    <label class="label-text">Username</label>
                                                     <div class="form-group">
                                                         <span class="la la-user form-icon"></span>
-                                                        <input class="form-control" type="text" value="Ali">
+                                                        <input class="form-control" type="text" th:value="${user.username}"  name="username">
                                                     </div>
                                                 </div>
                                             </div><!-- end col-lg-6 -->
-                                            <div class="col-lg-6 responsive-column">
-                                                <div class="input-box">
-                                                    <label class="label-text">Last Name</label>
-                                                    <div class="form-group">
-                                                        <span class="la la-user form-icon"></span>
-                                                        <input class="form-control" type="text" value="Tufan">
-                                                    </div>
-                                                </div>
-                                            </div><!-- end col-lg-6 -->
+                                         
                                             <div class="col-lg-6 responsive-column">
                                                 <div class="input-box">
                                                     <label class="label-text">Email Address</label>
                                                     <div class="form-group">
                                                         <span class="la la-envelope form-icon"></span>
-                                                        <input class="form-control" type="text" value="alitufan@gmail.com">
+                                                        <input class="form-control" type="text" th:value="${user.email}" readonly>
+
                                                     </div>
                                                 </div>
                                             </div><!-- end col-lg-6 -->
-                                            <div class="col-lg-6 responsive-column">
+                                           <div class="col-lg-6 responsive-column">
                                                 <div class="input-box">
                                                     <label class="label-text">Phone number</label>
                                                     <div class="form-group">
                                                         <span class="la la-phone form-icon"></span>
-                                                        <input class="form-control" type="text" value="+01 4561 3214">
+                                                        <input class="form-control" name="phoneNumber" type="text" th:value="${user.phoneNumber}">
                                                     </div>
                                                 </div>
                                             </div><!-- end col-lg-6 -->
-                                            <div class="col-lg-6 responsive-column">
+                                            <!--<div class="col-lg-6 responsive-column">
                                                 <div class="input-box">
                                                     <label class="label-text">Date of birth</label>
                                                     <div class="form-group">
@@ -490,8 +483,8 @@
                                                         <input class="form-control" type="text" value="03 Jun 1990">
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-6 -->
-                                             <div class="col-lg-6 responsive-column">
+                                            </div>end col-lg-6 -->
+                                             <!-- <div class="col-lg-6 responsive-column">
                                                 <div class="input-box">
                                                     <label class="label-text">Address</label>
                                                     <div class="form-group">
@@ -499,10 +492,19 @@
                                                         <input class="form-control" type="text" value="8800 Orchard Lake Road, Suite 180 Farmington Hills, U.S.A.">
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-6 -->
-                                            <div class="col-lg-12">
+                                            </div>end col-lg-6
+                                            <div class="col-lg-12"> -->
+                                             <!--   <div class="col-lg-6 responsive-column">
+                                                <div class="input-box">
+                                                    <label class="label-text">Last Name</label>
+                                                    <div class="form-group">
+                                                        <span class="la la-user form-icon"></span>
+                                                        <input class="form-control" type="text" value="Tufan">
+                                                    </div>
+                                                </div>
+                                            </div>end col-lg-6 -->
                                                 <div class="btn-box">
-                                                    <button class="theme-btn" type="button">Save Changes</button>
+                                                    <button class="theme-btn" type="submit">Save Changes</button>
                                                 </div>
                                             </div><!-- end col-lg-12 -->
                                         </div><!-- end row -->
@@ -511,7 +513,7 @@
                             </div>
                         </div><!-- end form-box -->
                     </div><!-- end col-lg-6 -->
-                    <div class="col-lg-6">
+                   <!--  <div class="col-lg-6">
                         <div class="form-box">
                             <div class="form-title-wrap">
                                 <h3 class="title">Change Email</h3>
@@ -528,7 +530,7 @@
                                                         <input class="form-control" type="text" placeholder="Current email">
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-12 -->
+                                            </div>end col-lg-12
                                             <div class="col-lg-12 responsive-column">
                                                 <div class="input-box">
                                                     <label class="label-text">New Email</label>
@@ -537,7 +539,7 @@
                                                         <input class="form-control" type="text" placeholder="New email">
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-12 -->
+                                            </div>end col-lg-12
                                             <div class="col-lg-12 responsive-column">
                                                 <div class="input-box">
                                                     <label class="label-text">New Email Again</label>
@@ -546,19 +548,19 @@
                                                         <input class="form-control" type="text" placeholder="New email again">
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-12 -->
+                                            </div>end col-lg-12
                                             <div class="col-lg-12">
                                                 <div class="btn-box">
                                                     <button class="theme-btn" type="button">Change Email</button>
                                                 </div>
-                                            </div><!-- end col-lg-12 -->
-                                        </div><!-- end row -->
+                                            </div>end col-lg-12
+                                        </div>end row
                                     </form>
                                 </div>
                             </div>
-                        </div><!-- end form-box -->
-                    </div><!-- end col-lg-6 -->
-                    <div class="col-lg-6">
+                        </div>end form-box
+                    </div>end col-lg-6 -->
+                    <!-- <div class="col-lg-6">
                         <div class="form-box">
                             <div class="form-title-wrap">
                                 <h3 class="title">Change Password</h3>
@@ -575,7 +577,7 @@
                                                         <input class="form-control" type="text" placeholder="Current password">
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-6 -->
+                                            </div>end col-lg-6
                                             <div class="col-lg-6 responsive-column">
                                                 <div class="input-box">
                                                     <label class="label-text">New Password</label>
@@ -584,7 +586,7 @@
                                                         <input class="form-control" type="text" placeholder="New password">
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-6 -->
+                                            </div>end col-lg-6
                                             <div class="col-lg-6 responsive-column">
                                                 <div class="input-box">
                                                     <label class="label-text">New Password Again</label>
@@ -593,19 +595,19 @@
                                                         <input class="form-control" type="text" placeholder="New password again">
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-6 -->
+                                            </div>end col-lg-6
                                              <div class="col-lg-12">
                                                  <div class="btn-box">
                                                      <button class="theme-btn" type="button">Change Password</button>
                                                  </div>
-                                            </div><!-- end col-lg-12 -->
-                                        </div><!-- end row -->
+                                            </div>end col-lg-12
+                                        </div>end row
                                     </form>
                                 </div>
                             </div>
-                        </div><!-- end form-box -->
-                    </div><!-- end col-lg-6 -->
-                    <div class="col-lg-6">
+                        </div>end form-box
+                    </div>end col-lg-6 -->
+                    <!-- <div class="col-lg-6">
                         <div class="form-box">
                             <div class="form-title-wrap">
                                 <h3 class="title pb-2">Forgot Password</h3>
@@ -629,8 +631,8 @@
                                     </form>
                                 </div>
                             </div>
-                        </div><!-- end form-box -->
-                    </div><!-- end col-lg-6 -->
+                        </div>end form-box
+                    </div>end col-lg-6 -->
                 </div><!-- end row -->
                 <div class="border-top mt-4"></div>
                 <div class="row align-items-center">

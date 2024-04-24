@@ -7,36 +7,57 @@
     <meta name="author" content="TechyDevs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Trizen - Travel Booking HTML Template</title>
+    <title>Connect Hotels</title>
     <!-- Favicon -->
-    <link rel="icon" href="images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
 
     <!-- Template CSS Files -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="css/line-awesome.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="css/daterangepicker.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/animated-headline.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/flag-icon.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/line-awesome.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/daterangepicker.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/css/animated-headline.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <style >
+     .delete-btn {
+        background-color: red;
+    }
+
+    .delete-btn:hover {
+        background-color: white;
+        color: red; /* Optionally change the text color to red on hover */
+    }
+    
+    
+    @keyframes slideOut {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100%); opacity: 0; }
+}
+
+.slide-out {
+    animation: slideOut 1s forwards;
+}
+    </style>
 </head>
 <body class="section-bg">
 <!-- start cssload-loader -->
-<div class="preloader" id="preloader">
+<!-- <div class="preloader" id="preloader">
     <div class="loader">
         <svg class="spinner" viewBox="0 0 50 50">
             <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
         </svg>
     </div>
-</div>
+</div> -->
 <!-- end cssload-loader -->
 
 <!-- ================================
@@ -66,64 +87,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="notification" role="tabpanel" aria-labelledby="notification-tab">
                 <div class="user-sidebar-item">
-                    <div class="notification-item">
-                        <div class="list-group drop-reveal-list">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>
-                                    <div class="msg-content w-100">
-                                        <h3 class="title pb-1">Your request has been sent</h3>
-                                        <p class="msg-text">2 min ago</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="icon-element bg-2 flex-shrink-0 mr-3 ml-0"><i class="la la-check"></i></div>
-                                    <div class="msg-content w-100">
-                                        <h3 class="title pb-1">Your account has been created</h3>
-                                        <p class="msg-text">1 day ago</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="icon-element bg-3 flex-shrink-0 mr-3 ml-0"><i class="la la-user"></i></div>
-                                    <div class="msg-content w-100">
-                                        <h3 class="title pb-1">Your account updated</h3>
-                                        <p class="msg-text">2 hrs ago</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="icon-element bg-4 flex-shrink-0 mr-3 ml-0"><i class="la la-lock"></i></div>
-                                    <div class="msg-content w-100">
-                                        <h3 class="title pb-1">Your password changed</h3>
-                                        <p class="msg-text">Yesterday</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="icon-element bg-5 flex-shrink-0 mr-3 ml-0"><i class="la la-envelope"></i></div>
-                                    <div class="msg-content w-100">
-                                        <h3 class="title pb-1">Your email sent</h3>
-                                        <p class="msg-text">Yesterday</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="icon-element bg-6 flex-shrink-0 mr-3 ml-0"><i class="la la-envelope"></i></div>
-                                    <div class="msg-content w-100">
-                                        <h3 class="title pb-1">Your email changed</h3>
-                                        <p class="msg-text">Yesterday</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                        </div>
-                    </div><!-- end notification-item -->
+                    
                 </div>
             </div>
             <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
@@ -131,8 +95,8 @@
                     <div class="notification-item">
                         <a href="user-dashboard-profile.html" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                <span class="font-size-14 font-weight-bold">Ali Tufan</span>
+                                <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="/images/team8.jpg" alt="team-img"></div>
+                                <span class="font-size-14 font-weight-bold"><span th:text="${session.Name}"></span></span>
                             </div>
                         </a>
                         <div class="list-group drop-reveal-list user-drop-reveal-list">
@@ -143,29 +107,10 @@
                                     </div>
                                 </div><!-- end msg-body -->
                             </a>
-                            <a href="user-dashboard-booking.html" class="list-group-item list-group-item-action">
-                                <div class="msg-body">
-                                    <div class="msg-content">
-                                        <h3 class="title"><i class="la la-shopping-cart mr-2"></i>My Booking</h3>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
-                                <div class="msg-body">
-                                    <div class="msg-content">
-                                        <h3 class="title"><i class="la la-heart mr-2"></i>My Reviews</h3>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="user-dashboard-settings.html" class="list-group-item list-group-item-action">
-                                <div class="msg-body">
-                                    <div class="msg-content">
-                                        <h3 class="title"><i class="la la-gear mr-2"></i>Settings</h3>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
+
+
                             <div class="section-block"></div>
-                            <a href="index.html" class="list-group-item list-group-item-action">
+                            <a href="/adminlogout" class="list-group-item list-group-item-action">
                                 <div class="msg-body">
                                     <div class="msg-content">
                                         <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>
@@ -194,23 +139,22 @@
         <div class="author-content">
             <div class="d-flex align-items-center">
                 <div class="author-img avatar-sm">
-                    <img src="images/team8.jpg" alt="testimonial image">
+                    <img src="/images/team8.jpg" alt="testimonial image">
                 </div>
                 <div class="author-bio">
-                    <h4 class="author__title">Ali Tufan</h4>
+                    <h4 class="author__title"><span th:text="${session.Name}"></span></h4>
                     <span class="author__meta">Member Since May 2017</span>
                 </div>
             </div>
         </div>
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu list-items">
-                <li><a href="user-dashboard.html"><i class="la la-dashboard mr-2 text-color"></i>Dashboard</a></li>
-                <li class="page-active"><a href="user-dashboard-booking.html"><i class="la la-shopping-cart mr-2"></i>My Booking</a></li>
-                <li><a href="user-dashboard-profile.html"><i class="la la-user mr-2 text-color-2"></i>My Profile</a></li>
-                <li><a href="user-dashboard-reviews.html"><i class="la la-star mr-2 text-color-3"></i>My Reviews</a></li>
-                <li><a href="user-dashboard-wishlist.html"><i class="la la-heart mr-2 text-color-4"></i>Wishlist</a></li>
-                <li><a href="user-dashboard-settings.html"><i class="la la-cog mr-2 text-color-5"></i>Settings</a></li>
-                <li><a href="index.html"><i class="la la-power-off mr-2 text-color-6"></i>Logout</a></li>
+                 <li ><a href="/userdashboardguide"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                <li class="page-active"><a href="/userbookingguide"><i class="la la-shopping-cart mr-2 text-color"></i>My Rooms</a></li>
+
+                <li><a href="/userroomguide"><i class="fas fa-bed mr-2 text-color-3"></i>Add Rooms</a></li>
+                
+                <li><a href="/logout"><i class="la la-power-off mr-2 text-color-6"></i>Logout</a></li>
             </ul>
         </div><!-- end sidebar-menu-wrap -->
     </div>
@@ -229,7 +173,7 @@
                 <div class="col-lg-12">
                     <div class="menu-wrapper">
                         <div class="logo mr-5">
-                            <a href="index.html"><img src="images/logo2.png" alt="logo"></a>
+                            <a href="index.html"><img src="/images/logo2.png" alt="logo"></a>
                             <div class="menu-toggler">
                                 <i class="la la-bars"></i>
                                 <i class="la la-times"></i>
@@ -238,125 +182,8 @@
                                 <i class="la la-user"></i>
                             </div><!-- end user-menu-open -->
                         </div>
-                        <div class="dashboard-search-box">
-                            <div class="contact-form-action">
-                                <form action="#">
-                                    <div class="form-group mb-0">
-                                        <input class="form-control" type="text" name="text" placeholder="Search">
-                                        <button class="search-btn"><i class="la la-search"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="nav-btn ml-auto">
-                            <div class="notification-wrap d-flex align-items-center">
-                                <div class="notification-item mr-2">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle drop-reveal-toggle-icon" id="notificationDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="la la-bell"></i>
-                                            <span class="noti-count">4</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-xl dropdown-menu-right">
-                                            <div class="dropdown-header drop-reveal-header">
-                                                <h6 class="title">You have <strong class="text-black">4</strong> notifications</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list">
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your request has been sent</h3>
-                                                            <p class="msg-text">2 min ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-2 flex-shrink-0 mr-3 ml-0"><i class="la la-check"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your account has been created</h3>
-                                                            <p class="msg-text">1 day ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-3 flex-shrink-0 mr-3 ml-0"><i class="la la-user"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your account updated</h3>
-                                                            <p class="msg-text">2 hrs ago</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="icon-element bg-4 flex-shrink-0 mr-3 ml-0"><i class="la la-lock"></i></div>
-                                                        <div class="msg-content w-100">
-                                                            <h3 class="title pb-1">Your password changed</h3>
-                                                            <p class="msg-text">Yesterday</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a>
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
-                                <div class="notification-item">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                                <span class="font-size-14 font-weight-bold">Ali Tufan</span>
-                                            </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
-                                            <div class="dropdown-item drop-reveal-header user-reveal-header">
-                                                <h6 class="title text-uppercase">Welcome!</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                <a href="user-dashboard-profile.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-user mr-2"></i>My Profile</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="user-dashboard-booking.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-shopping-cart mr-2"></i>My Booking</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-heart mr-2"></i>My Reviews</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-gear mr-2"></i>Settings</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <div class="section-block"></div>
-                                                <a href="index.html" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body">
-                                                        <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
-                            </div>
-                        </div><!-- end nav-btn -->
+                        
+                       
                     </div><!-- end menu-wrapper -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
@@ -369,15 +196,15 @@
                     <div class="col-lg-6">
                         <div class="breadcrumb-content">
                             <div class="section-heading">
-                                <h2 class="sec__title font-size-30 text-white">My Booking</h2>
+                                <h2 class="sec__title font-size-30 text-white">My Rooms</h2>
                             </div>
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
                     <div class="col-lg-6">
                         <div class="breadcrumb-list text-right">
                             <ul class="list-items">
-                                <li><a href="index.html" class="text-white">Home</a></li>
-                                <li>Dashboard</li>
+                                <li><a href="/userdashboardguide" class="text-white">Dashboard</a></li>
+                               
                                 <li>My Booking</li>
                             </ul>
                         </div><!-- end breadcrumb-list -->
@@ -392,157 +219,67 @@
                         <div class="form-box">
                             <div class="form-title-wrap">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="title">Booking Results</h3>
-                                        <p class="font-size-14">Showing 1 to 7 of 17 entries</p>
-                                    </div>
-                                    <span>Total Bookings <strong class="color-text">(17)</strong></span>
+                                    
+                                    <span>Total Rooms <strong class="color-text"></strong></span>
                                 </div>
                             </div>
                             <div class="form-content">
                                 <div class="table-form table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Type</th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">Order Date</th>
-                                            <th scope="col">Execution Date</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">London to New York City</h3>
-                                                </div>
-                                            </td>
-                                            <td>New York City</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-info py-1 px-2">Pending</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-car mr-1 font-size-18"></i>Car</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">Mercedes-Benz A 200 CDI</h3>
-                                                </div>
-                                            </td>
-                                            <td>Greater London, United Kingdom</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-success py-1 px-2">Completed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-tree mr-1 font-size-18"></i>Tour</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">InterContinental New York Barclay</h3>
-                                                </div>
-                                            </td>
-                                            <td>Istanbul , Turkey</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-warning py-1 px-2">Delayed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-ship mr-1 font-size-18"></i>Cruise</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">5 Nights Bermuda Cruise</h3>
-                                                </div>
-                                            </td>
-                                            <td>Miami, Florida</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-info py-1 px-2">On schedule</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-building mr-1 font-size-18"></i>Hotel</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">Melia White House Hotel</h3>
-                                                </div>
-                                            </td>
-                                            <td>Boston, Massachusetts</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-success py-1 px-2">Completed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-tree mr-1 font-size-18"></i>Tour</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">Hut on Blue Water Beach Tour</h3>
-                                                </div>
-                                            </td>
-                                            <td>124 Nevada, Las Vegas</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-success py-1 px-2">Completed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">Rome to Australia</h3>
-                                                </div>
-                                            </td>
-                                            <td>New York City</td>
-                                            <td>30/6/2020</td>
-                                            <td>2/6/2020</td>
-                                            <td>$350</td>
-                                            <td><span class="badge badge-success py-1 px-2">Completed</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                   <!-- Flash messages -->
+    <div th:if="${successMessage}" class="alert alert-success" role="alert"  id="successMessage">
+        <span th:text="${successMessage}" id="successMessage"></span>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert"  id="successMessage">
+        <span th:text="${errorMessage}" id="successMessage"></span>
+    </div>
+        
+                                 <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Type</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="room : ${rooms}">
+            <td>
+                <div class="table-content">
+                    <img class="title" th:src="${room.image}" alt="Room Image" />
+                </div>
+            </td>
+            <td>
+                <div class="table-content">
+                    <h3 class="title" th:text="${room.name}"></h3>
+                </div>
+            </td>
+            <td th:text="${room.roomType}"></td>
+            <td th:text="${room.price}"></td>
+            <td>
+                <span class="badge badge-info py-1 px-2" th:text="${room.is_Booked ? 'Booked' : 'Available'}"></span>
+            </td>
+            <td>
+                <div class="table-content">
+                    <form th:action="@{/bookRoom}" method="post" th:if="${!room.is_Booked}">
+                        <input type="hidden" name="id" th:value="${room.roomId}" />
+                        <button class="theme-btn theme-btn-small" type="submit">Book</button>
+                    </form>
+                    <form th:action="@{/cancelRoom}" method="post" th:if="${room.is_Booked}">
+                        <input type="hidden" name="id" th:value="${room.roomId}" />
+                        <button class="theme-btn theme-btn-small delete-btn btn btn-danger" type="submit">Cancel</button>
+
+
+
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
                                 </div>
                             </div>
                         </div><!-- end form-box -->
@@ -622,6 +359,39 @@
 <script src="js/animated-headline.js"></script>
 <script src="js/jquery.ripples-min.js"></script>
 <script src="js/main.js"></script>
+
+<script>
+function toggleBooking(roomId) {
+    var room = document.querySelector('.room-item[data-room-id="' + roomId + '"]');
+    var isBooked = room.getAttribute('data-is-booked');
+
+    // Toggle the booking status
+    if (isBooked === 'true') {
+        room.setAttribute('data-is-booked', 'false');
+        room.querySelector('.booking-status').innerText = 'Available';
+    } else {
+        room.setAttribute('data-is-booked', 'true');
+        room.querySelector('.booking-status').innerText = 'Booked';
+    }
+}
+
+//Wait for the DOM to be ready
+document.addEventListener("DOMContentLoaded", function() {
+    // Find the success message element
+    var successMessage = document.getElementById("successMessage");
+    
+    // If the success message element exists
+    if (successMessage) {
+        // Hide the success message after 5 seconds with fade-out effect
+        setTimeout(function() {
+            successMessage.classList.add("slide-out");
+            setTimeout(function() {
+                successMessage.style.display = "none";
+            }, 1000); // Wait for the animation to complete
+        }, 5000); // 5000 milliseconds = 5 seconds
+    }
+});
+</script>
 </body>
 
 <!-- Mirrored from techydevs.com/demos/trizen/html/user-dashboard-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Mar 2024 14:13:32 GMT -->
