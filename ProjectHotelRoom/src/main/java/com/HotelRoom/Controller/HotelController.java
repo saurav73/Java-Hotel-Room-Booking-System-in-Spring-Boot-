@@ -269,7 +269,11 @@ public class HotelController {
         // Thymeleaf template name
     }
     
-    
+    @GetMapping("/index2guide")
+    public String index2guide()
+    {
+    	return"index2";
+    }
 //    @GetMapping("/hotel-details/{id}")
 //    public ResponseEntity<Map<String, Object>> getHotelDetails(@PathVariable("id") int id) {
 //        Map<String, Object> response = new HashMap();

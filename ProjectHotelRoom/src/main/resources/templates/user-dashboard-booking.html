@@ -150,7 +150,7 @@
         <div class="sidebar-menu-wrap">
             <ul class="sidebar-menu list-items">
                  <li ><a href="/userdashboardguide"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
-                <li class="page-active"><a href="/userbookingguide"><i class="la la-shopping-cart mr-2 text-color"></i>My Rooms</a></li>
+                <li class="page-active"><a th:href="@{'/userbookingguide/' + ${session.Activehotel}}"><i class="la la-shopping-cart mr-2 text-color"></i>My Rooms</a></li>
 
                 <li><a href="/userroomguide"><i class="fas fa-bed mr-2 text-color-3"></i>Add Rooms</a></li>
                 
